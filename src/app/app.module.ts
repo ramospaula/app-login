@@ -8,22 +8,30 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPageModule } from '../pages/login/login.module';
 import { UserPageModule } from '../pages/user/user.module';
+import { CameraPage } from '../pages/camera/camera';
+import { GaleriaPage } from '../pages/galeria/galeria';
+import { AlterarFotoPageModule } from '../pages/alterar-foto/alterar-foto.module';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    CameraPage,
+    GaleriaPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     LoginPageModule,
-    UserPageModule
+    UserPageModule,
+    AlterarFotoPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage, 
+    CameraPage,
+    GaleriaPage
   ],
   providers: [
     StatusBar,

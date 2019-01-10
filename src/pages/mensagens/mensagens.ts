@@ -15,11 +15,29 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MensagensPage {
 
+  private listaMensagem: Array<any> = [];
+
+   
+  
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+    this.listaMensagem = [
+      {
+       nome: "Ana Ramos",
+       mensagem: "Bom dia",
+      },
+      {
+       nome: "Paula Ramos",
+       mensagem: "Bom tarde",
+      }
+      ]
+      
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MensagensPage');
   }
+  
+  
 
 }

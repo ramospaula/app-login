@@ -15,4 +15,17 @@
 
 <ion-content padding>
 
+    
+      <ion-card *ngFor="let item of listaPosts">
+        <ion-item>
+          <ion-card-header>
+            {{item.tituloPost}}
+          </ion-card-header>
+          <ion-card-content>
+            {{item.post}}
+            
+          </ion-card-content>
+        </ion-item>
+        </ion-card>
+
 </ion-content>

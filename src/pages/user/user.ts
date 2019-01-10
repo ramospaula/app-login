@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MensagensPage } from '../mensagens/mensagens';
 import { PostsPage } from '../posts/posts';
+import { AlterarFotoPage } from '../alterar-foto/alterar-foto';
 
 /**
  * Generated class for the UserPage page.
@@ -35,5 +36,10 @@ export class UserPage {
   backToLogin(): any{
     this.navCtrl.popToRoot()
   }
+
+  openAlterarFoto(){
+    this.navCtrl.push(AlterarFotoPage);
+  }
+  
 
 }

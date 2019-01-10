@@ -23,8 +23,10 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  openUserLogin(){
+  openUserLogin(): any{
     this.navCtrl.push(UserPage);
   }
+
+
 
 }
