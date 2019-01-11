@@ -23,9 +23,9 @@
   </ion-list>
 
   <ion-list *ngFor="let item of listaMensagem">
-      <ion-item>
+      <ion-item (click)="openExibirMensagem(item)">
         <h2>{{item.nome}}</h2>
-        <p>{{item.mensagem}}</p>
+        <p>{{item.msg}}</p>
       </ion-item>
     </ion-list> 
 

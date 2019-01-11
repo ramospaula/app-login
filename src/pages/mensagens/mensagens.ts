@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ExibirMensagemPage } from '../exibir-mensagem/exibir-mensagem';
 
 /**
  * Generated class for the MensagensPage page.
@@ -17,27 +18,37 @@ export class MensagensPage {
 
   private listaMensagem: Array<any> = [];
 
-   
+   mensagem = [
+    {
+     id : 1,
+     nome: "Ana Ramos",
+     msg: "Bom dia",
+    },
+    {
+     id: 2,
+     nome: "Paula Ramos",
+     msg: "Bom tarde",
+    }
+    ]
+
+   private idM = this.listaMensagem;
+
   
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-
-    this.listaMensagem = [
-      {
-       nome: "Ana Ramos",
-       mensagem: "Bom dia",
-      },
-      {
-       nome: "Paula Ramos",
-       mensagem: "Bom tarde",
-      }
-      ]
-      
+    
   }
 
   ionViewDidLoad() {
+    this.getListaMensagem();
     console.log('ionViewDidLoad MensagensPage');
+  } 
+  
+  getListaMensagem(){
+    this.listaMensagem = this.mensagem;
   }
-  
-  
+
+  openExibirMensagem(item){
+    this.navCtrl.push(ExibirMensagemPage, {id: item.id});
+  }
 
 }

@@ -11,6 +11,8 @@ import { UserPageModule } from '../pages/user/user.module';
 import { CameraPage } from '../pages/camera/camera';
 import { GaleriaPage } from '../pages/galeria/galeria';
 import { AlterarFotoPageModule } from '../pages/alterar-foto/alterar-foto.module';
+import { MensagensPageModule } from '../pages/mensagens/mensagens.module';
+import { ExibirMensagemPageModule } from '../pages/exibir-mensagem/exibir-mensagem.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { AlterarFotoPageModule } from '../pages/alterar-foto/alterar-foto.module
     IonicModule.forRoot(MyApp),
     LoginPageModule,
     UserPageModule,
-    AlterarFotoPageModule
+    AlterarFotoPageModule,
+    MensagensPageModule,
+    ExibirMensagemPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

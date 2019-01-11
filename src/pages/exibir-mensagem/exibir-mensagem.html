@@ -7,12 +7,21 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>exibirMensagem</ion-title>
+    <ion-title>exibir Mensagem</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+    <ion-card *ngIf="exibir">
+        <ion-card-header>
+          {{exibir.nome}}
+        </ion-card-header>
+        <ion-card-content>
+          {{exibir.msg}}
+        </ion-card-content>
+      </ion-card>
 
 </ion-content>
