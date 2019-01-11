@@ -12,24 +12,33 @@
 </ion-header>
 
 <ion-content padding>
+
+
+    <ion-list >
+        <ion-item (click)="openAlterarFoto()">
+          <ion-avatar item-start  >
+            <img src="assets/imgs/perfil.png">
+          </ion-avatar>
+          <h2>Ana Ramos</h2>
+          <p><i>anaramos</i></p>
+        </ion-item>
+      </ion-list>
     
-  <p (click)="openAlterarFoto()">A R</p>
-  
-    <strong>Ana Ramos</strong>
-  
-    <ion-card>
+    <ion-card class="card-perfil">
         <ion-card-header>
-          Header
+         <strong> Header</strong>
         </ion-card-header>
         <ion-card-content>
           The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
-          
+          <h4 id = "data-perfil">11/01/2019</h4>
         </ion-card-content>
+        
       </ion-card>
 
 
     <button ion-button block (click)="openMensagens()">Mensagens</button>
     <button ion-button block (click)="openPosts()">Posts</button>
+    <br><br><br>
     
     <button ion-button block (click)="backToLogin()" id= "botaologout">LOGOUT</button>
 

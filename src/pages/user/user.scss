@@ -1,22 +1,16 @@
 page-user {
+    
+    .item-md ion-avatar ion-img,
+    .item-md ion-avatar img {
+      border-radius: 50%;
+      overflow: hidden;
+      width: 70px;
+      height: 70px;
+    }
 
-    p {
-        background: #4a8bfc;
-        color:#fff;
-        width:75px;
-        height:75px;
-        line-height:75px;
-        vertical-align:middle;
-        text-align:center;
-        font-size:30px;
-        border-radius:50%;
-        -moz-border-radius:50%;
-        -webkit-border-radius:50%;
-        }
-
-  #usuario-perfil {
-    text-align: right;
-  }  
+      #nome-perfil {
+          text-align: right;
+      }
 
   #botaologout {
       background-color: #FF0000

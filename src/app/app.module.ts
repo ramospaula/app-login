@@ -13,6 +13,7 @@ import { GaleriaPage } from '../pages/galeria/galeria';
 import { AlterarFotoPageModule } from '../pages/alterar-foto/alterar-foto.module';
 import { MensagensPageModule } from '../pages/mensagens/mensagens.module';
 import { ExibirMensagemPageModule } from '../pages/exibir-mensagem/exibir-mensagem.module';
+import { ExibirPostPageModule } from '../pages/exibir-post/exibir-post.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ExibirMensagemPageModule } from '../pages/exibir-mensagem/exibir-mensag
     UserPageModule,
     AlterarFotoPageModule,
     MensagensPageModule,
-    ExibirMensagemPageModule
+    ExibirMensagemPageModule,
+    ExibirPostPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

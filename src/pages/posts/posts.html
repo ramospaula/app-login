@@ -15,13 +15,14 @@
 
 <ion-content padding>
 
+
     
       <ion-card *ngFor="let item of listaPosts">
         <ion-item>
           <ion-card-header>
             {{item.tituloPost}}
           </ion-card-header>
-          <ion-card-content>
+          <ion-card-content (click)="openExibirPost(item)">
             {{item.post}}
             
           </ion-card-content>

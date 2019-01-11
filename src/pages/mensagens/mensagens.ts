@@ -16,7 +16,7 @@ import { ExibirMensagemPage } from '../exibir-mensagem/exibir-mensagem';
 })
 export class MensagensPage {
 
-  private listaMensagem: Array<any> = [];
+  public listaMensagem: Array<any> = [];
 
    mensagem = [
     {
@@ -30,8 +30,6 @@ export class MensagensPage {
      msg: "Bom tarde",
     }
     ]
-
-   private idM = this.listaMensagem;
 
   
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -48,7 +46,7 @@ export class MensagensPage {
   }
 
   openExibirMensagem(item){
-    this.navCtrl.push(ExibirMensagemPage, {id: item.id});
+    this.navCtrl.push(ExibirMensagemPage,{'id': item});
   }
 
 }

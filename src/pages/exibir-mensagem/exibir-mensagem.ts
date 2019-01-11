@@ -15,12 +15,17 @@ import { MensagensPage } from '../mensagens/mensagens';
   templateUrl: 'exibir-mensagem.html',
 })
 export class ExibirMensagemPage {
+
+  public exibir;
+  public mensagemP: MensagensPage;
+
   
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  
+  this.exibir = this.navParams.get('id');
   }
 
-  ionViewDidLoad() {  
+  ionViewDidLoad() { 
     
     console.log('ionViewDidLoad ExibirMensagemPage');
   }
