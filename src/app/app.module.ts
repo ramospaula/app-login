@@ -14,6 +14,7 @@ import { AlterarFotoPageModule } from '../pages/alterar-foto/alterar-foto.module
 import { MensagensPageModule } from '../pages/mensagens/mensagens.module';
 import { ExibirMensagemPageModule } from '../pages/exibir-mensagem/exibir-mensagem.module';
 import { ExibirPostPageModule } from '../pages/exibir-post/exibir-post.module';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ExibirPostPageModule } from '../pages/exibir-post/exibir-post.module';
     GaleriaPage
   ],
   imports: [
+    ComponentsModule, 
     BrowserModule,
     IonicModule.forRoot(MyApp),
     LoginPageModule,

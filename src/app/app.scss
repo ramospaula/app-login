@@ -27,3 +27,11 @@
     text-align: right;
 
 }
+
+.item-md ion-avatar ion-img,
+    .item-md ion-avatar img {
+      border-radius: 50%;
+      overflow: hidden;
+      width: 70px;
+      height: 70px;
+    }

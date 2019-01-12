@@ -20,15 +20,24 @@ export class MensagensPage {
 
    mensagem = [
     {
-     id : 1,
      nome: "Ana Ramos",
      msg: "Bom dia",
     },
     {
-     id: 2,
      nome: "Paula Ramos",
      msg: "Bom tarde",
-    }
+    },
+    {
+      nome: "Maria Santos",
+      msg: "Como está voce?",
+     },{
+      nome: "Roberta Gonçalves",
+      msg: "Parabéns",
+     },
+     {
+      nome: "Joana Silva",
+      msg: "Amanhã a gente se ver"
+     },
     ]
 
   

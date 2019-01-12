@@ -16,17 +16,17 @@
 <ion-content padding>
 
 
-    
-      <ion-card *ngFor="let item of listaPosts">
-        <ion-item>
+    <ion-list>
+      <button ion-item *ngFor="let item of listaPosts" (click)="openExibirPost(item)">
+      <ion-card class="card-perfil">
           <ion-card-header>
             {{item.tituloPost}}
           </ion-card-header>
-          <ion-card-content (click)="openExibirPost(item)">
+          <ion-card-content >
             {{item.post}}
             
           </ion-card-content>
-        </ion-item>
         </ion-card>
-
+      </button>
+      </ion-list>
 </ion-content>

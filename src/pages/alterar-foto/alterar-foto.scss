@@ -1,3 +1,25 @@
 page-alterar-foto {
+    ion-icon::before {
+        display: inline-block;
+        width: 60px;
+    }
 
+    .toolbar-title-md {
+        padding: 0 12px;
+        font-size: 2rem;
+        font-weight: 500;
+        color: white;
+        height: 70px;
+    }
+
+    .right-button{
+        float: right;
+    }
+
+    .ion-md-time{
+        color: red !important;
+    }
+    .ion-ios-time{
+        color: red !important;
+    }
 }

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MensagensPage } from '../mensagens/mensagens';
 import { PostsPage } from '../posts/posts';
 import { AlterarFotoPage } from '../alterar-foto/alterar-foto';
+import { ExibirPostPage } from '../exibir-post/exibir-post';
 
 /**
  * Generated class for the UserPage page.
@@ -17,10 +18,25 @@ import { AlterarFotoPage } from '../alterar-foto/alterar-foto';
   templateUrl: 'user.html',
 })
 export class UserPage {
+public posts;
+
+public Postt: PostsPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+   
+    this.posts = [
+      {
+       tituloPost: "A linguagem",
+       autor: "admin",
+       dataPublicacao: "08/01/2019 12:50",
+       post: "Em linguística, a noção de texto é ampla e ainda aberta a uma definição mais precisa. Grosso modo, pode ser entendido como manifestação linguística das ideias de um autor, que serão interpretadas pelo leitor de acordo com seus conhecimentos linguísticos e culturais. Seu tamanho é variável",
+      }
+      ]
   }
+  
 
+  public listaPost: Array<any>;
+ 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserPage');
   }
@@ -31,6 +47,10 @@ export class UserPage {
 
   openPosts(){
     this.navCtrl.push(PostsPage);
+  }
+
+  openExibirPost(item){
+    this.navCtrl.push(ExibirPostPage);
   }
 
   backToLogin(): any{

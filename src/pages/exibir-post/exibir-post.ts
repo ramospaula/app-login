@@ -16,9 +16,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ExibirPostPage {
 
   public post;
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.post = this.navParams.get('id');
+    this.post = this.navParams.get('post');
   }
 
 

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { AlterarFotoPage } from './alterar-foto';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { AlterarFotoPage } from './alterar-foto';
   ],
   imports: [
     IonicPageModule.forChild(AlterarFotoPage),
+    ComponentsModule
   ],
 })
 export class AlterarFotoPageModule {}
