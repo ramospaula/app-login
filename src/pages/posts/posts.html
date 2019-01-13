@@ -16,17 +16,9 @@
 <ion-content padding>
 
 
-    <ion-list>
-      <button ion-item *ngFor="let item of listaPosts" (click)="openExibirPost(item)">
-      <ion-card class="card-perfil">
-          <ion-card-header>
-            {{item.tituloPost}}
-          </ion-card-header>
-          <ion-card-content >
-            {{item.post}}
-            
-          </ion-card-content>
-        </ion-card>
-      </button>
+    
+
+    <ion-list *ngFor="let posts of listaPosts" (click)="openExibirPost(posts)">
+      <post [meuTitulo] = "posts.tituloPost" [meuPost] = "posts.post" [minhaData] = "posts.dataPublicacao"></post>
       </ion-list>
 </ion-content>

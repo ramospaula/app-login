@@ -24,16 +24,16 @@
         </ion-item>
       </ion-list>
     
-    <ion-card class="card-perfil">
-        <ion-card-header>
-         <strong> {{posts[0].tituloPost}}</strong>
-        </ion-card-header>
-        <ion-card-content>
-          {{posts[0].post}}
-          <h4 id = "data-perfil">11/01/2019 12:50</h4>
-        </ion-card-content>
+
+
+      <ion-list (click)="openExibirPost(posts)">
+
+          <post [meuTitulo] = "posts.tituloPost" [meuPost] = "posts.post" [minhaData] = "posts.dataPublicacao"></post>
+
         
-      </ion-card>
+    </ion-list>
+
+
 
 
     <button ion-button block (click)="openMensagens()">Mensagens</button>

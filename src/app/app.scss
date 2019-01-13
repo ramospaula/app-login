@@ -19,19 +19,19 @@
 }
 
 .card-perfil {
-    border-radius: 10%;
+    border-radius: 5%;
+    background-color: #D3D3D3;
+  }
+  a ion-label,
+  button ion-label {
+    pointer-events: none;
     background-color: #D3D3D3;
   }
 
-  #data-perfil {
-    text-align: right;
-
+  ion-card {
+    background-color: #D3D3D3;
+    display: initial;
 }
 
-.item-md ion-avatar ion-img,
-    .item-md ion-avatar img {
-      border-radius: 50%;
-      overflow: hidden;
-      width: 70px;
-      height: 70px;
-    }
+  
+

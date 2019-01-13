@@ -20,22 +20,19 @@ import { ExibirPostPage } from '../exibir-post/exibir-post';
 export class UserPage {
 public posts;
 
-public Postt: PostsPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
    
-    this.posts = [
+    this.posts = 
       {
        tituloPost: "A linguagem",
        autor: "admin",
-       dataPublicacao: "08/01/2019 12:50",
+       dataPublicacao: "08/01/2019",
+       horario: "12:50",
        post: "Em linguística, a noção de texto é ampla e ainda aberta a uma definição mais precisa. Grosso modo, pode ser entendido como manifestação linguística das ideias de um autor, que serão interpretadas pelo leitor de acordo com seus conhecimentos linguísticos e culturais. Seu tamanho é variável",
       }
-      ]
+      
   }
-  
-
-  public listaPost: Array<any>;
  
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserPage');
@@ -49,8 +46,8 @@ public Postt: PostsPage;
     this.navCtrl.push(PostsPage);
   }
 
-  openExibirPost(item){
-    this.navCtrl.push(ExibirPostPage);
+  openExibirPost(posts){
+    this.navCtrl.push(ExibirPostPage,{'post': posts});
   }
 
   backToLogin(): any{
@@ -60,6 +57,5 @@ public Postt: PostsPage;
   openAlterarFoto(){
     this.navCtrl.push(AlterarFotoPage);
   }
-  
 
 }

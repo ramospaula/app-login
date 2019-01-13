@@ -9,7 +9,25 @@
 
 <ion-content padding>
 
-  
-      <detalhes [meuTitulo]="post.tituloPost" [meuAutor]="post.autor" [minhaData] = "post.dataPublicacao" [meuPost] ="post.post"></detalhes>
 
+  <ion-header>
+
+    <ion-navbar>
+      <ion-title>{{post.tituloPost}}</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+<ion-content padding>
+  <div class="card" *ngIf="post"> 
+      <div class="item item-text-wrap">
+          
+          <h6>Autor: {{post.autor}}</h6>
+          <h6>Data da Publicacao: {{post.dataPublicacao}} {{post.horario}}</h6>
+          <p>{{post.post}}</p>
+      </div>
+    </div>
+
+  </ion-content>
+  
 </ion-content>
