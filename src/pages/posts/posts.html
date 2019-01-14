@@ -19,6 +19,6 @@
     
 
     <ion-list *ngFor="let posts of allPost" (click)="openExibirPost(posts)">
-      <post [meuTitulo] = "posts.autor" [meuPost] = "posts.mensagem" [minhaData] = "posts.data"></post>
+      <post [meuTitulo] = "posts.titulo" [meuPost] = "posts.mensagem" [meuAutor]= "posts.autor" [minhaData] = "posts.data"></post>
       </ion-list>
 </ion-content>

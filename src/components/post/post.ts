@@ -17,12 +17,14 @@ export class PostComponent {
   @Input('meuTitulo') TituloPost;
   @Input('meuPost') postPost;
   @Input('minhaData') dataPost;
+  @Input('meuAutor') autorPost;
 
   text: string;
 
   titulo: string;
   post: string;
   data: string;
+  autor: string;
 
   constructor(public navCtrl: NavController) {
     console.log('Hello PostComponent Component');
@@ -33,7 +35,7 @@ export class PostComponent {
     this.titulo = this.TituloPost;
     this.post = this.postPost;
     this.data = this.dataPost;
+    this.autor = this.autorPost;
   }
-
   
 }

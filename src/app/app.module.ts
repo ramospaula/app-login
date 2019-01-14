@@ -17,6 +17,7 @@ import { ExibirPostPageModule } from '../pages/exibir-post/exibir-post.module';
 import { ComponentsModule } from '../components/components.module';
 import { PostProvider } from '../providers/post/post';
 import { HttpModule } from '@angular/http';
+import { LoginProvider } from '../providers/login/login';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { HttpModule } from '@angular/http';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PostProvider
+    PostProvider,
+    LoginProvider
   ]
 })
 export class AppModule {}

@@ -25,16 +25,14 @@
       </ion-list>
     
 
+<div *ngIf="lastPosts != null">
+      <ion-list  (click)="openExibirPost(lastPosts)">
 
-      <ion-list (click)="openExibirPost(posts)">
-
-          <post [meuTitulo] = "posts.titulo" [meuPost] = "posts.mensagem" [minhaData] = "posts.data"></post>
+          <post [meuTitulo] = "lastPosts.titulo" [meuPost] = "lastPosts.mensagem" [minhaData] = "lastPosts.data"></post>
 
         
     </ion-list>
-
-
-
+  </div>
 
     <button ion-button block (click)="openMensagens()">Mensagens</button>
     <button ion-button block (click)="openPosts()">Posts</button>

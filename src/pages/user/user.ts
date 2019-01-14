@@ -4,13 +4,8 @@ import { MensagensPage } from '../mensagens/mensagens';
 import { PostsPage } from '../posts/posts';
 import { AlterarFotoPage } from '../alterar-foto/alterar-foto';
 import { ExibirPostPage } from '../exibir-post/exibir-post';
+import { PostProvider } from '../../providers/post/post';
 
-/**
- * Generated class for the UserPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -18,27 +13,46 @@ import { ExibirPostPage } from '../exibir-post/exibir-post';
   templateUrl: 'user.html',
 })
 export class UserPage {
-public posts;
+/* public posts; */
+public lastPosts: any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-   
-    this.posts = 
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private postProvider: PostProvider) {
+    this.lastPost(); 
+    /* this.posts = 
       {
        titulo: "A linguagem",
        autor: "admin",
        data: "08/01/2019",
        horario: "12:50",
        mensagem: "Em linguística, a noção de texto é ampla e ainda aberta a uma definição mais precisa. Grosso modo, pode ser entendido como manifestação linguística das ideias de um autor, que serão interpretadas pelo leitor de acordo com seus conhecimentos linguísticos e culturais. Seu tamanho é variável",
-      }
+      } */
       
   }
  
   ionViewDidLoad() {
+    
     console.log('ionViewDidLoad UserPage');
   }
 
-  openMensagens(): any{
+
+  lastPost(){
+    this.postProvider.getLastPost().subscribe(
+      data => {
+        const response = data as any;
+        const postResponse = JSON.parse(response._body);
+        this.lastPosts = postResponse;
+        console.log(data);
+        console.log(this.lastPosts);
+        
+      }, error => {
+        console.log(error);
+      }
+    )
+  }
+
+  openMensagens(){
     this.navCtrl.push(MensagensPage);
   }
 
@@ -46,11 +60,11 @@ public posts;
     this.navCtrl.push(PostsPage);
   }
 
-  openExibirPost(posts){
-    this.navCtrl.push(ExibirPostPage,{'post': posts});
+  openExibirPost(lastPosts){
+    this.navCtrl.push(ExibirPostPage,{'post': lastPosts});
   }
 
-  backToLogin(): any{
+  backToLogin(){
     this.navCtrl.popToRoot()
   }
 
