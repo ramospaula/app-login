@@ -15,6 +15,8 @@ import { MensagensPageModule } from '../pages/mensagens/mensagens.module';
 import { ExibirMensagemPageModule } from '../pages/exibir-mensagem/exibir-mensagem.module';
 import { ExibirPostPageModule } from '../pages/exibir-post/exibir-post.module';
 import { ComponentsModule } from '../components/components.module';
+import { PostProvider } from '../providers/post/post';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { ComponentsModule } from '../components/components.module';
     AlterarFotoPageModule,
     MensagensPageModule,
     ExibirMensagemPageModule,
-    ExibirPostPageModule
+    ExibirPostPageModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,7 +47,8 @@ import { ComponentsModule } from '../components/components.module';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PostProvider
   ]
 })
 export class AppModule {}

@@ -25,11 +25,11 @@ public posts;
    
     this.posts = 
       {
-       tituloPost: "A linguagem",
+       titulo: "A linguagem",
        autor: "admin",
-       dataPublicacao: "08/01/2019",
+       data: "08/01/2019",
        horario: "12:50",
-       post: "Em linguística, a noção de texto é ampla e ainda aberta a uma definição mais precisa. Grosso modo, pode ser entendido como manifestação linguística das ideias de um autor, que serão interpretadas pelo leitor de acordo com seus conhecimentos linguísticos e culturais. Seu tamanho é variável",
+       mensagem: "Em linguística, a noção de texto é ampla e ainda aberta a uma definição mais precisa. Grosso modo, pode ser entendido como manifestação linguística das ideias de um autor, que serão interpretadas pelo leitor de acordo com seus conhecimentos linguísticos e culturais. Seu tamanho é variável",
       }
       
   }

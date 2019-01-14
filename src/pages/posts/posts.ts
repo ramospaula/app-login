@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ExibirPostPage } from '../exibir-post/exibir-post';
 import { UserPage } from '../user/user';
+import { PostProvider } from '../../providers/post/post';
 
 /**
  * Generated class for the PostsPage page.
@@ -14,12 +15,17 @@ import { UserPage } from '../user/user';
 @Component({
   selector: 'page-posts',
   templateUrl: 'posts.html',
+  providers: [
+    PostProvider
+  ]
 })
 export class PostsPage {
 
-  public listaPosts: Array<any> = [];
+  /* public listaPosts: Array<any> = []; */
 
-  post = [
+  public allPost: Array<any>;
+
+  /* post = [
     {
      tituloPost: "a linguagem",
      autor: "admin",
@@ -41,28 +47,44 @@ export class PostsPage {
      horario: "12:30",
      post: "Podemos acreditar que tudo que a vida nos oferecerá no futuro é repetir o que fizemos ontem e hoje. Mas, se prestarmos atenção, vamos nos dar conta de que nenhum dia é igual a outro. Cada manhã traz uma benção escondida; uma benção que só serve para esse dia e que não se pode guardar nem desaproveita. Se não usamos este milagre hoje, ele vai se perder. Este milagre está nos detalhes do cotidiano; é preciso viver cada minuto porque ali encontramos a saída de nossas confusões, a alegria de nossos bons momentos, a pista correta para a decisão que tomaremos. Nunca podemos deixar que cada dia pareça igual ao anterior porque todos os dias são diferentes, porque estamos em constante processo de mudança."
     }
-    ]
+    ] */
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,
+     private postProvider: PostProvider
+     ) {
 
     
 
   }
 
   ionViewDidLoad() {
-    this.getListaPost();
+    this.allPosts();
+    /* this.getListaPost(); */
     console.log('ionViewDidLoad PostsPage');
   }
 
-  getListaPost(){
+/* getListaPost(){
     this.listaPosts = this.post;
-  }
+  } */
 
   openExibirPost(posts){
     this.navCtrl.push(ExibirPostPage,{'post': posts});
   }
   
-
+  allPosts(){
+    this.postProvider.getPostList().subscribe(
+      data => {
+        const response = data as any;
+        const postResponse = JSON.parse(response._body);
+        this.allPost = postResponse;
+        console.log(data);
+        console.log(this.allPost);
+      }, error => {
+        console.log(error);
+      }
+    )
+  }
 
 }
