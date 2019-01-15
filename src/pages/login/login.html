@@ -19,18 +19,18 @@
       
         <ion-item>
           <ion-label stacked>Username</ion-label>
-          <ion-input type="text"></ion-input>
+          <ion-input type="username" #nome></ion-input>
         </ion-item>
       
         <ion-item>
           <ion-label stacked>Password</ion-label>
-          <ion-input type="password"></ion-input>
+          <ion-input type="password" #password></ion-input>
         </ion-item>
-      
+  
       </ion-list> 
       <ion-item>
         <ion-label stacked>Lembrar</ion-label>
         <ion-checkbox color= "blue"> </ion-checkbox>
       </ion-item>
-      <button ion-button block (click)="openUserLogin()"id="botao-login">Login</button>
+      <button ion-button block (click)="openUserLogin(nome.value, password.value)"id="botao-login">Login</button>
     </ion-content>

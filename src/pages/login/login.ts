@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, NavOptions } from 'ionic-angular';
 import { UserPage } from '../user/user';
+import { LoginProvider } from '../../providers/login/login';
 
 /**
  * Generated class for the LoginPage page.
@@ -13,18 +14,38 @@ import { UserPage } from '../user/user';
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
+  providers: [
+    LoginProvider
+  ]
 }) 
 export class LoginPage {
+ 
+  
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    private loginProvider: LoginProvider
+    ) {
+      
   }
+  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  openUserLogin(): any{
-    this.navCtrl.push(UserPage);
+  
+  openUserLogin(username: string, password: string){
+    this.loginProvider.postLogin(username, password).then((result: any) => {
+      console.log(result);
+      
+      this.navCtrl.push(UserPage.name);
+      
+    }).catch((error: any) => {
+     
+      console.log("invalido: " + error.error.erro.codigo);
+    });
+      
   }
 
 

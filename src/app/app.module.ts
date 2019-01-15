@@ -16,7 +16,7 @@ import { ExibirMensagemPageModule } from '../pages/exibir-mensagem/exibir-mensag
 import { ExibirPostPageModule } from '../pages/exibir-post/exibir-post.module';
 import { ComponentsModule } from '../components/components.module';
 import { PostProvider } from '../providers/post/post';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { LoginProvider } from '../providers/login/login';
 
 @NgModule({
@@ -33,10 +33,10 @@ import { LoginProvider } from '../providers/login/login';
     LoginPageModule,
     UserPageModule,
     AlterarFotoPageModule,
-    MensagensPageModule,
+    MensagensPageModule, 
     ExibirMensagemPageModule,
     ExibirPostPageModule,
-    HttpModule
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

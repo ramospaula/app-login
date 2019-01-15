@@ -23,7 +23,7 @@ export class PostsPage {
 
   /* public listaPosts: Array<any> = []; */
 
-  public allPost: Array<any>;
+  public allPost:any = new Array;
 
   /* post = [
     {
@@ -76,9 +76,8 @@ export class PostsPage {
   allPosts(){
     this.postProvider.getPostList().subscribe(
       data => {
-        const response = data as any;
-        const postResponse = JSON.parse(response._body);
-        this.allPost = postResponse;
+        
+        this.allPost = data;
         console.log(data);
         console.log(this.allPost);
       }, error => {

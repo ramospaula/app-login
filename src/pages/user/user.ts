@@ -40,9 +40,7 @@ public lastPosts: any;
   lastPost(){
     this.postProvider.getLastPost().subscribe(
       data => {
-        const response = data as any;
-        const postResponse = JSON.parse(response._body);
-        this.lastPosts = postResponse;
+        this.lastPosts = data;
         console.log(data);
         console.log(this.lastPosts);
         
