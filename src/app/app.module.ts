@@ -18,6 +18,8 @@ import { ComponentsModule } from '../components/components.module';
 import { PostProvider } from '../providers/post/post';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginProvider } from '../providers/login/login';
+import { IonicStorageModule } from '@ionic/storage';
+import { StorageUserProvider } from '../providers/storage-user/storage-user';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { LoginProvider } from '../providers/login/login';
     MensagensPageModule, 
     ExibirMensagemPageModule,
     ExibirPostPageModule,
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -50,7 +53,8 @@ import { LoginProvider } from '../providers/login/login';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PostProvider,
-    LoginProvider
+    LoginProvider,
+    StorageUserProvider
   ]
 })
 export class AppModule {}

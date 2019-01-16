@@ -19,8 +19,10 @@
           <ion-avatar item-start  >
             <img src="assets/imgs/perfil.png">
           </ion-avatar>
-          <h2>Ana Ramos</h2>
-          <p><i>anaramos</i></p>
+          <div *ngIf="user!=null">
+          <h2>{{user.nome}}</h2>
+          <p><i>{{user.login}}</i></p>
+        </div>
         </ion-item>
       </ion-list>
     
@@ -28,7 +30,7 @@
 <div *ngIf="lastPosts != null">
       <ion-list  (click)="openExibirPost(lastPosts)">
 
-          <post [meuTitulo] = "lastPosts.titulo" [meuPost] = "lastPosts.mensagem" [minhaData] = "lastPosts.data"></post>
+          <post [meuPost] = "lastPosts"></post>
 
         
     </ion-list>

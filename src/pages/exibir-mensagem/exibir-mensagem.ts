@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { MensagensPage } from '../mensagens/mensagens';
 
-/**
- * Generated class for the ExibirMensagemPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -17,7 +11,6 @@ import { MensagensPage } from '../mensagens/mensagens';
 export class ExibirMensagemPage {
 
   public exibir;
-  public mensagemP: MensagensPage;
 
   
 
@@ -26,7 +19,6 @@ export class ExibirMensagemPage {
   }
 
   ionViewDidLoad() { 
-    
     console.log('ionViewDidLoad ExibirMensagemPage');
   }
 

@@ -22,4 +22,8 @@ export class PostProvider {
     return this.http.get('http://aulas.getsandbox.com/last_post');
   }
 
+  getMessageList(id){
+    return this.http.get('http://aulas.getsandbox.com/msgs/'+ id);
+  }
+
 }

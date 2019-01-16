@@ -14,11 +14,7 @@
 
 
 <ion-content padding>
-
-
-    
-
     <ion-list *ngFor="let posts of allPost" (click)="openExibirPost(posts)">
-      <post [meuTitulo] = "posts.titulo" [meuPost] = "posts.mensagem" [meuAutor]= "posts.autor" [minhaData] = "posts.data"></post>
+      <post [meuPost] = "posts"></post>
       </ion-list>
 </ion-content>

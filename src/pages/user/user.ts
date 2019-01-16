@@ -5,6 +5,8 @@ import { PostsPage } from '../posts/posts';
 import { AlterarFotoPage } from '../alterar-foto/alterar-foto';
 import { ExibirPostPage } from '../exibir-post/exibir-post';
 import { PostProvider } from '../../providers/post/post';
+import { LoginPage } from '../login/login';
+import { StorageUserProvider } from '../../providers/storage-user/storage-user';
 
 
 @IonicPage()
@@ -17,9 +19,12 @@ export class UserPage {
 public lastPosts: any;
 
 
+ user: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private postProvider: PostProvider) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private postProvider: PostProvider, private storageUser: StorageUserProvider) {
     this.lastPost(); 
+    
     /* this.posts = 
       {
        titulo: "A linguagem",
@@ -31,8 +36,12 @@ public lastPosts: any;
       
   }
  
-  ionViewDidLoad() {
-    
+  ngOnInit() {
+    this.storageUser.getUser().then(result => {
+      this.user = (result);
+      console.log(this.user);
+      });
+
     console.log('ionViewDidLoad UserPage');
   }
 
@@ -50,6 +59,7 @@ public lastPosts: any;
     )
   }
 
+ 
   openMensagens(){
     this.navCtrl.push(MensagensPage);
   }
@@ -63,7 +73,7 @@ public lastPosts: any;
   }
 
   backToLogin(){
-    this.navCtrl.popToRoot()
+    this.navCtrl.setRoot(LoginPage);
   }
 
   openAlterarFoto(){

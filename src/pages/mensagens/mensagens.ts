@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ExibirMensagemPage } from '../exibir-mensagem/exibir-mensagem';
+import { PostProvider } from '../../providers/post/post';
+import { StorageUserProvider } from '../../providers/storage-user/storage-user';
 
 /**
  * Generated class for the MensagensPage page.
@@ -16,43 +18,35 @@ import { ExibirMensagemPage } from '../exibir-mensagem/exibir-mensagem';
 })
 export class MensagensPage {
 
-  public listaMensagem: Array<any> = [];
+  
 
-   mensagem = [
-    {
-     nome: "Ana Ramos",
-     msg: "Bom dia",
-    },
-    {
-     nome: "Paula Ramos",
-     msg: "Bom tarde",
-    },
-    {
-      nome: "Maria Santos",
-      msg: "Como está voce?",
-     },{
-      nome: "Roberta Gonçalves",
-      msg: "Parabéns",
-     },
-     {
-      nome: "Joana Silva",
-      msg: "Amanhã a gente se ver"
-     },
-    ]
+  public message:any = new Array;
 
   
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private messagePost: PostProvider, private storageUser: StorageUserProvider) {
     
+    this.storageUser.getUser().then(result => {
+      this.messagePost.getMessageList(result.id).subscribe(
+        data => {
+          this.message = data;
+          console.log(data);
+        }, error => {
+          console.log(error);
+        }
+      )
+      console.log(result.id);
+      console.log(this.message);
+      });
   }
 
   ionViewDidLoad() {
-    this.getListaMensagem();
+    /* this.getListaMensagem(); */
     console.log('ionViewDidLoad MensagensPage');
   } 
   
-  getListaMensagem(){
+ /*  getListaMensagem(){
     this.listaMensagem = this.mensagem;
-  }
+  } */
 
   openExibirMensagem(item){
     this.navCtrl.push(ExibirMensagemPage,{'id': item});
