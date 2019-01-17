@@ -15,22 +15,24 @@
 
 <ion-content padding> 
   <img src="assets/imgs/logo.png">
+  
     <ion-list>
       
         <ion-item>
           <ion-label stacked>Username</ion-label>
-          <ion-input type="text"></ion-input>
+          <ion-input type="text" minlength = "3" maxlength="20" #username (ionChange)='onChangeTime(username.value, password.value)' ></ion-input> 
         </ion-item>
       
-        <ion-item>
+        <ion-item> 
           <ion-label stacked>Password</ion-label>
-          <ion-input type="password"></ion-input>
+          <ion-input style="-webkit-text-security:disc;" type="number" minlength = "4" maxlength="10" #password (ionChange)='onChangeTime(username.value, password.value)' ></ion-input>
         </ion-item>
-      
       </ion-list> 
       <ion-item>
         <ion-label stacked>Lembrar</ion-label>
         <ion-checkbox color= "blue"> </ion-checkbox>
       </ion-item>
-      <button ion-button block (click)="openUserLogin()"id="botao-login">Login</button>
+      <button [disabled]="buttonDisabled" ion-button block (click)="openUserLogin()" id="botao-login">Login</button>
+    
     </ion-content>
+ 

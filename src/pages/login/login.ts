@@ -15,18 +15,29 @@ import { UserPage } from '../user/user';
   templateUrl: 'login.html',
 }) 
 export class LoginPage {
+   
+  buttonDisabled: boolean = true;
+    
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log(this.buttonDisabled);
   }
+ 
+  ionViewDidEnter() {
+    this.buttonDisabled = true;
+  } 
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
-
-  openUserLogin(): any{
+  openUserLogin(){
     this.navCtrl.push(UserPage);
   }
 
-
+  onChangeTime(username, password){
+    if( (password.length >= 4) && (username.length >= 3) ){
+      return this.buttonDisabled = false;
+    }else{
+      return this.buttonDisabled = true; 
+    }
+  }
+  
 
 }

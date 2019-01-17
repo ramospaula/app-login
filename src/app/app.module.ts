@@ -15,6 +15,7 @@ import { MensagensPageModule } from '../pages/mensagens/mensagens.module';
 import { ExibirMensagemPageModule } from '../pages/exibir-mensagem/exibir-mensagem.module';
 import { ExibirPostPageModule } from '../pages/exibir-post/exibir-post.module';
 import { ComponentsModule } from '../components/components.module';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ComponentsModule } from '../components/components.module';
   providers: [
     StatusBar,
     SplashScreen,
+    ScreenOrientation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
