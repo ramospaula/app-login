@@ -18,10 +18,10 @@ import { StorageUserProvider } from '../../providers/storage-user/storage-user';
 })
 export class MensagensPage {
 
-  
+  searchQuery: string = '';
 
   public message:any = new Array;
-
+  public filtro:any = new Array;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, private messagePost: PostProvider, private storageUser: StorageUserProvider) {
     
@@ -29,6 +29,7 @@ export class MensagensPage {
       this.messagePost.getMessageList(result.id).subscribe(
         data => {
           this.message = data;
+          this.filtro = this.message;
           console.log(data);
         }, error => {
           console.log(error);
@@ -37,19 +38,33 @@ export class MensagensPage {
       console.log(result.id);
       console.log(this.message);
       });
+      this.initializeItems();
+  }
+
+  initializeItems() {
+    this.message = this.filtro;
+  }
+
+  getItems(ev: any) {
+    this.initializeItems();
+
+    const val = ev.target.value;
+
+    if (val && val.trim() != '') {
+      this.message = this.message.filter((item) => {
+        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
   }
 
   ionViewDidLoad() {
-    /* this.getListaMensagem(); */
     console.log('ionViewDidLoad MensagensPage');
   } 
-  
- /*  getListaMensagem(){
-    this.listaMensagem = this.mensagem;
-  } */
+
+
 
   openExibirMensagem(item){
-    this.navCtrl.push(ExibirMensagemPage,{'id': item});
+    this.navCtrl.push(ExibirMensagemPage.name,{'id': item});
   }
 
 }

@@ -4,7 +4,6 @@ import { ExibirPostPage } from '../exibir-post/exibir-post';
 import { PostProvider } from '../../providers/post/post';
 
 
-
 @IonicPage()
 @Component({
   selector: 'page-posts',
@@ -37,7 +36,6 @@ export class PostsPage {
   allPosts(){
     this.postProvider.getPostList().subscribe(
       data => {
-        
         this.allPost = data;
         console.log(data);
         console.log(this.allPost);
@@ -46,5 +44,7 @@ export class PostsPage {
       }
     )
   }
+
+
 
 }

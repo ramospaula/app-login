@@ -21,6 +21,9 @@ import { LoginProvider } from '../providers/login/login';
 import { IonicStorageModule } from '@ionic/storage';
 import { StorageUserProvider } from '../providers/storage-user/storage-user';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import localeptBr from '@angular/common/locales/pt'
+registerLocaleData(localeptBr);
 
 @NgModule({
   declarations: [
@@ -34,11 +37,6 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     LoginPageModule,
-    UserPageModule,
-    AlterarFotoPageModule,
-    MensagensPageModule, 
-    ExibirMensagemPageModule,
-    ExibirPostPageModule,
     HttpClientModule,
     IonicStorageModule.forRoot()
   ],
@@ -50,6 +48,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     GaleriaPage
   ],
   providers: [
+    DatePipe,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

@@ -20,12 +20,12 @@
       
         <ion-item>
           <ion-label stacked>Username</ion-label>
-          <ion-input type="text" minlength = "3" maxlength="20" #username (ionChange)='onChangeTime(username.value, password.value)' ></ion-input> 
+          <ion-input type="text" minlength="3" maxlength="20" #username (ionChange)='onChangeTime(username.value, password.value)' ></ion-input> 
         </ion-item>
       
         <ion-item> 
           <ion-label stacked>Password</ion-label>
-          <ion-input style="-webkit-text-security:disc;" type="number" minlength = "4" maxlength="10" #password (ionChange)='onChangeTime(username.value, password.value)' ></ion-input>
+          <ion-input type="number"  minlength="4" maxlength="10" style="-webkit-text-security:disc;"  #password (ionChange)='onChangeTime(username.value, password.value)' ></ion-input>
         </ion-item>
 
       </ion-list> 

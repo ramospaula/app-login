@@ -24,16 +24,6 @@ public lastPosts: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private postProvider: PostProvider, private storageUser: StorageUserProvider) {
     this.lastPost(); 
-    
-    /* this.posts = 
-      {
-       titulo: "A linguagem",
-       autor: "admin",
-       data: "08/01/2019",
-       horario: "12:50",
-       mensagem: "Em linguística, a noção de texto é ampla e ainda aberta a uma definição mais precisa. Grosso modo, pode ser entendido como manifestação linguística das ideias de um autor, que serão interpretadas pelo leitor de acordo com seus conhecimentos linguísticos e culturais. Seu tamanho é variável",
-      } */
-      
   }
  
   ngOnInit() {
@@ -61,23 +51,23 @@ public lastPosts: any;
 
  
   openMensagens(){
-    this.navCtrl.push(MensagensPage);
+    this.navCtrl.push(MensagensPage.name);
   }
 
   openPosts(){
-    this.navCtrl.push(PostsPage);
+    this.navCtrl.push(PostsPage.name);
   }
 
   openExibirPost(lastPosts){
-    this.navCtrl.push(ExibirPostPage,{'post': lastPosts});
+    this.navCtrl.push(ExibirPostPage.name,{'post': lastPosts});
   }
 
   backToLogin(){
-    this.navCtrl.setRoot(LoginPage);
+    this.navCtrl.setRoot(LoginPage.name);
   }
 
   openAlterarFoto(){
-    this.navCtrl.push(AlterarFotoPage);
+    this.navCtrl.push(AlterarFotoPage.name);
   }
 
 }
