@@ -26,7 +26,8 @@ import { StorageUserProvider } from '../../providers/storage-user/storage-user';
 
 export class LoginPage {
    
-  private open: boolean = true;
+  buttonDisabled: boolean = true;
+    
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -35,14 +36,21 @@ export class LoginPage {
     private storageUser: StorageUserProvider
     ) {
       
+    console.log(this.buttonDisabled);
   }
-  
-
+ 
   ionViewDidEnter() {
-    
-    console.log('ionViewDidLoad LoginPage');
-  }
+    this.buttonDisabled = true;
+  } 
 
+
+  onChangeTime(username, password){
+    if( (password.length >= 4) && (username.length >= 3) ){
+      return this.buttonDisabled = false;
+    }else{
+      return this.buttonDisabled = true; 
+    }
+  }
   
   openUserLogin(username: string, password: string){
     this.loginProvider.postLogin(username, password).then((result: any) => {
@@ -50,11 +58,10 @@ export class LoginPage {
       this.storageUser.save(result); 
       this.storageUser.getUser();
       this.navCtrl.setRoot(UserPage.name);
-      this.open = false;
     }).catch((error: any) => {
       const alert = this.alertCtrl.create({
         title: 'codigo ' + error.error.erro.codigo,
-        subTitle: 'usuário ou senha inválido',
+        subTitle: 'usu�rio ou senha inv�lido',
         buttons: ['OK']
       });
       alert.present();
@@ -62,13 +69,7 @@ export class LoginPage {
     });
       
   }
-
   
 
   
 }
-
-  
-  
-
-

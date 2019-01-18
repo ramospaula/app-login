@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginProvider } from '../providers/login/login';
 import { IonicStorageModule } from '@ionic/storage';
 import { StorageUserProvider } from '../providers/storage-user/storage-user';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,9 @@ import { StorageUserProvider } from '../providers/storage-user/storage-user';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PostProvider,
     LoginProvider,
-    StorageUserProvider
+    StorageUserProvider,
+    ScreenOrientation,
+    
   ]
 })
 export class AppModule {}
