@@ -15,7 +15,7 @@
 
 <ion-content padding>
   
-    <ion-list *ngFor="let posts of allPost" (click)="openExibirPost(posts)">  
+    <ion-list id="card" *ngFor="let posts of allPost" (click)="openExibirPost(posts)">  
       <post [meuPost] = "posts"></post>
       </ion-list>
 </ion-content>

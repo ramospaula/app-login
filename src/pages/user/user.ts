@@ -30,11 +30,21 @@ public lastPosts: any;
     this.storageUser.getUser().then(result => {
       this.user = (result);
       console.log(this.user);
+      this.getBeginName();
       });
 
     console.log('ionViewDidLoad UserPage');
   }
 
+  getBeginName(){
+    let str = this.user.nome;
+    let res = str.split(" ");
+    let firth = res[0].charAt(0);
+    let last = res[res.length - 1].charAt(0);
+    console.log(res);
+    console.log(firth);
+    console.log(last);
+  }
 
   lastPost(){
     this.postProvider.getLastPost().subscribe(
@@ -63,6 +73,7 @@ public lastPosts: any;
   }
 
   backToLogin(){
+    this.storageUser.remove();
     this.navCtrl.setRoot(LoginPage.name);
   }
 

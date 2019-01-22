@@ -27,18 +27,18 @@
       </ion-list>
     
 
-<div *ngIf="lastPosts != null">
-      <ion-list  (click)="openExibirPost(lastPosts)">
-
-          <post [meuPost] = "lastPosts"></post>
+<div id="card" *ngIf="lastPosts != null">
+      
+        
+          <post [meuPost] = "lastPosts" (click)="openExibirPost(lastPosts)"></post>
 
         
-    </ion-list>
+  
   </div>
 
     <button ion-button block (click)="openMensagens()">Mensagens</button>
     <button ion-button block (click)="openPosts()">Posts</button>
-    <br><br><br>
+    
     
     <button ion-button block (click)="backToLogin()" id= "botaologout">LOGOUT</button>
 

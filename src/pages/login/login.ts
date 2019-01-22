@@ -26,8 +26,11 @@ import { StorageUserProvider } from '../../providers/storage-user/storage-user';
 
 export class LoginPage {
    
-  buttonDisabled: boolean = true;
-    
+  buttonDisabled: boolean;
+  public checkedBox: boolean;
+
+  public user;
+  
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -36,11 +39,11 @@ export class LoginPage {
     private storageUser: StorageUserProvider
     ) {
       
-    console.log(this.buttonDisabled);
   }
  
   ionViewDidEnter() {
     this.buttonDisabled = true;
+    this.checkedBox = false;
   } 
 
 
@@ -55,21 +58,22 @@ export class LoginPage {
   openUserLogin(username: string, password: string){
     this.loginProvider.postLogin(username, password).then((result: any) => {
       console.log(result);
-      this.storageUser.save(result); 
-      this.storageUser.getUser();
-      this.navCtrl.setRoot(UserPage.name);
+      this.user = result;
+      this.storageUser.save(result);
+      this.navCtrl.setRoot(UserPage.name,{'user': this.user});
     }).catch((error: any) => {
       const alert = this.alertCtrl.create({
         title: 'codigo ' + error.error.erro.codigo,
-        subTitle: 'usu�rio ou senha inv�lido',
+        subTitle: error.error.erro.mensagem,
         buttons: ['OK']
       });
       alert.present();
-      console.log("invalido: " + error.error.erro.codigo);
     });
       
   }
   
-
   
 }
+  
+
+

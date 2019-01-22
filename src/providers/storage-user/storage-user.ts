@@ -23,6 +23,10 @@ export class StorageUserProvider {
   public getUser(){
     return this.storage.get('user');
   }
+  
+  public remove(){
+    return this.storage.remove('user');
+  }
 
 }
 

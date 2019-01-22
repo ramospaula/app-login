@@ -13,9 +13,20 @@ page-user {
       }
 
   #botaologout {
-      background-color: #FF0000
+      background-color: #FF0000;
+      display: inline;
+      top: 40px;
   }
 
-  
+  .button-block {
+    position: relative;
+    top: 25px;
+  }
+
+  button.disable-hover.button.button.button-default.button-default.button-block.button-block {
+    display: inline;
+    margin: 10px auto;
+}
+
 
 }
