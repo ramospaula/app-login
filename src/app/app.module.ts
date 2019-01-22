@@ -15,7 +15,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginProvider } from '../providers/login/login';
 import { IonicStorageModule } from '@ionic/storage';
 import { StorageUserProvider } from '../providers/storage-user/storage-user';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeptBr from '@angular/common/locales/pt'
 
@@ -50,9 +49,7 @@ registerLocaleData(localeptBr);
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PostProvider,
     LoginProvider,
-    StorageUserProvider,
-    ScreenOrientation,
-    
+    StorageUserProvider
   ]
 })
 export class AppModule {}
