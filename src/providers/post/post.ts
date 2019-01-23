@@ -15,15 +15,15 @@ export class PostProvider {
   }
 
   getPostList(){
-    return this.http.get('http://aulas.getsandbox.com/posts');
+    return this.http.get('http://aulas2.getsandbox.com/posts');
   }
 
   getLastPost(){
-    return this.http.get('http://aulas.getsandbox.com/last_post');
+    return this.http.get('http://aulas2.getsandbox.com/last_post');
   }
 
   getMessageList(id){
-    return this.http.get('http://aulas.getsandbox.com/msgs/'+ id);
+    return this.http.get('http://aulas2.getsandbox.com/msgs/'+ id);
   }
 
 }

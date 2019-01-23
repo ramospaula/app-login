@@ -58,9 +58,8 @@ export class LoginPage {
   openUserLogin(username: string, password: string){
     this.loginProvider.postLogin(username, password).then((result: any) => {
       console.log(result);
-      this.user = result;
       this.storageUser.save(result);
-      this.navCtrl.setRoot(UserPage.name,{'user': this.user});
+      this.navCtrl.setRoot(UserPage.name);
     }).catch((error: any) => {
       const alert = this.alertCtrl.create({
         title: 'codigo ' + error.error.erro.codigo,

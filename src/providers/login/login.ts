@@ -36,7 +36,7 @@ export class LoginProvider {
   }
 
   post(data){
-    return this.http.post('http://aulas.getsandbox.com/login', data);
+    return this.http.post('http://aulas2.getsandbox.com/login', data);
   }
 
 }

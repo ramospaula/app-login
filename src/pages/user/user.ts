@@ -20,7 +20,7 @@ public lastPosts: any;
 
 
  user: any;
-
+ sigla: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private postProvider: PostProvider, private storageUser: StorageUserProvider) {
     this.lastPost(); 
@@ -41,9 +41,12 @@ public lastPosts: any;
     let res = str.split(" ");
     let firth = res[0].charAt(0);
     let last = res[res.length - 1].charAt(0);
+    let sigla = firth.concat(last);
+    this.sigla = sigla;
     console.log(res);
     console.log(firth);
     console.log(last);
+    console.log(sigla);
   }
 
   lastPost(){
