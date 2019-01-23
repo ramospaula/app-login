@@ -7,8 +7,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPageModule } from '../pages/login/login.module';
-import { CameraPage } from '../pages/camera/camera';
-import { GaleriaPage } from '../pages/galeria/galeria';
 import { ComponentsModule } from '../components/components.module';
 import { PostProvider } from '../providers/post/post';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,6 +15,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { StorageUserProvider } from '../providers/storage-user/storage-user';
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeptBr from '@angular/common/locales/pt'
+import { Camera } from '@ionic-native/camera';
 
 registerLocaleData(localeptBr);
 
@@ -24,8 +23,6 @@ registerLocaleData(localeptBr);
   declarations: [
     MyApp,
     HomePage,
-    CameraPage,
-    GaleriaPage
   ],
   imports: [
     ComponentsModule, 
@@ -38,9 +35,7 @@ registerLocaleData(localeptBr);
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage, 
-    CameraPage,
-    GaleriaPage
+    HomePage,
   ],
   providers: [
     DatePipe,
@@ -49,7 +44,8 @@ registerLocaleData(localeptBr);
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PostProvider,
     LoginProvider,
-    StorageUserProvider
+    StorageUserProvider,
+    Camera
   ]
 })
 export class AppModule {}

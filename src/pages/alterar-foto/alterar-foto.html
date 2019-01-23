@@ -18,13 +18,14 @@
     
       
       <ion-content>
-        <img src= "assets/imgs/perfil.png">
+        
+        <img  src="{{ photo }}" />
       </ion-content>
       
       <ion-footer>
-          <ion-title>
-                <ion-icon id="icon1" name="camera"></ion-icon>
-              <ion-icon id="icon2" name="images"></ion-icon> 
+          <ion-title> 
+                <ion-icon id="icon1" name="camera" (click)="takePicture(photo)"></ion-icon>
+              <ion-icon id="icon2" name="images" (click)="takePicture()"></ion-icon> 
           </ion-title>
       </ion-footer>
 

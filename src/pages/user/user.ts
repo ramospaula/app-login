@@ -37,16 +37,10 @@ public lastPosts: any;
   }
 
   getBeginName(){
-    let str = this.user.nome;
-    let res = str.split(" ");
+    let res = this.user.nome.split(" ");
     let firth = res[0].charAt(0);
     let last = res[res.length - 1].charAt(0);
-    let sigla = firth.concat(last);
-    this.sigla = sigla;
-    console.log(res);
-    console.log(firth);
-    console.log(last);
-    console.log(sigla);
+    this.sigla = firth.concat(last);
   }
 
   lastPost(){
