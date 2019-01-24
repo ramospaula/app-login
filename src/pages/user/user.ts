@@ -15,26 +15,40 @@ import { StorageUserProvider } from '../../providers/storage-user/storage-user';
   templateUrl: 'user.html',
 })
 export class UserPage {
-/* public posts; */
+
+
 public lastPosts: any;
 
 
  user: any;
  sigla: any;
+ id;
+
+ photo;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private postProvider: PostProvider, private storageUser: StorageUserProvider) {
     this.lastPost(); 
+    this.getPhoto();
+
   }
  
   ngOnInit() {
     this.storageUser.getUser().then(result => {
       this.user = (result);
+      this.id = result.id;
       console.log(this.user);
       this.getBeginName();
+      this.getPhoto();
       });
 
     console.log('ionViewDidLoad UserPage');
   }
+
+  ionViewDidLoad() { 
+    this.getPhoto();
+  }
+
+
 
   getBeginName(){
     let res = this.user.nome.split(" ");
@@ -56,6 +70,19 @@ public lastPosts: any;
     )
   }
 
+  getPhoto(){
+    this.storageUser.getPhoto().then(result => {
+      this.photo = result;
+      console.log("hey");
+      console.log(this.photo);
+      if(this.photo == null){
+        console.log("eu sou null");
+      }else{
+        console.log("nao sou null");
+      }
+    })
+  }
+
  
   openMensagens(){
     this.navCtrl.push(MensagensPage.name);
@@ -75,7 +102,7 @@ public lastPosts: any;
   }
 
   openAlterarFoto(){
-    this.navCtrl.push(AlterarFotoPage.name);
+    this.navCtrl.push(AlterarFotoPage.name, {'idUser': this.id});
   }
 
 }
