@@ -1,19 +1,39 @@
 page-user {
     
     .item-md ion-avatar ion-img,
-    .item-md ion-avatar img {
+    .item-md ion-avatar  {
       border-radius: 50%;
       overflow: hidden;
       width: 70px;
       height: 70px;
+      background-color: blue;
+      
     }
 
-      #nome-perfil {
-          text-align: right;
-      }
+    h4:first-child {
+      color: white;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 30px;
+      position: relative;
+      top: 18px;
+    }
 
-  #botaologout {
-      background-color: #FF0000
-  }
+    #botaologout {
+      background-color: #FF0000;
+      display: inline;
+      top: 40px;
+    }
+
+  .button-block {
+      position: relative;
+      top: 25px;
+   }
+
+  button.disable-hover.button.button.button-default.button-default.button-block.button-block {
+    display: inline;
+    margin: 10px auto;
+   }
+
 
 }

@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { ExibirPostPage } from '../../pages/exibir-post/exibir-post';
-
+import { DatePipe } from '@angular/common';
 /**
  * Generated class for the PostComponent component.
  *
@@ -14,26 +13,22 @@ import { ExibirPostPage } from '../../pages/exibir-post/exibir-post';
 })
 export class PostComponent {
 
-  @Input('meuTitulo') TituloPost;
   @Input('meuPost') postPost;
-  @Input('minhaData') dataPost;
 
-  text: string;
-
-  titulo: string;
   post: string;
   data: string;
-
-  constructor(public navCtrl: NavController) {
+  constructor(
+    public navCtrl: NavController,
+    private datepipe: DatePipe
+    ) {
+    this.datepipe = new DatePipe("pt-BR");
     console.log('Hello PostComponent Component');
-    this.text = 'Hello World';
   }
 
   ngOnInit(){
-    this.titulo = this.TituloPost;
+    this.data = this.datepipe.transform(this.postPost.data, 'dd/MM/yyyy');
+    this.postPost.data = this.datepipe.transform(this.postPost.data, 'short');
     this.post = this.postPost;
-    this.data = this.dataPost;
   }
-
   
 }

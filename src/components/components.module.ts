@@ -1,13 +1,10 @@
 import { NgModule} from '@angular/core';
-import { DetalhesComponent } from './detalhes/detalhes';
 import { IonicModule } from 'ionic-angular';
 import { PostComponent } from './post/post';
 @NgModule({
-	declarations: [DetalhesComponent,
-    PostComponent],
+	declarations: [PostComponent],
 	imports: [IonicModule],
-	exports: [DetalhesComponent,
-    PostComponent]
+	exports: [PostComponent]
 })
 export class ComponentsModule {
 

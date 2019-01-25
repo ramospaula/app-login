@@ -1,16 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { MensagensPage } from '../mensagens/mensagens';
 import { PostsPage } from '../posts/posts';
 import { AlterarFotoPage } from '../alterar-foto/alterar-foto';
 import { ExibirPostPage } from '../exibir-post/exibir-post';
+import { PostProvider } from '../../providers/post/post';
+import { LoginPage } from '../login/login';
 
-/**
- * Generated class for the UserPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -18,44 +14,117 @@ import { ExibirPostPage } from '../exibir-post/exibir-post';
   templateUrl: 'user.html',
 })
 export class UserPage {
-public posts;
+  /* public posts; */
+  public lastPosts: any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-   
-    this.posts = 
-      {
-       tituloPost: "A linguagem",
-       autor: "admin",
-       dataPublicacao: "08/01/2019",
-       horario: "12:50",
-       post: "Em linguística, a noção de texto é ampla e ainda aberta a uma definição mais precisa. Grosso modo, pode ser entendido como manifestação linguística das ideias de um autor, que serão interpretadas pelo leitor de acordo com seus conhecimentos linguísticos e culturais. Seu tamanho é variável",
+  user: any;
+  sigla: any;
+
+  public loader;
+
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private postProvider: PostProvider,
+    private alertCtrl: AlertController,
+    public loadingCtrl: LoadingController) {
+    this.lastPost();
+    this.user = this.navParams.get('user');
+  }
+
+  ngOnInit() {
+
+    console.log(this.user);
+    this.getBeginName();
+  };
+
+
+  getBeginName() {
+    let str = this.user.nome;
+    let res = str.split(" ");
+    let firth = res[0].charAt(0);
+    let last = res[res.length - 1].charAt(0);
+    let sigla = firth.concat(last);
+    this.sigla = sigla;
+    console.log(res);
+    console.log(firth);
+    console.log(last);
+    console.log(sigla);
+  }
+
+  lastPost() {
+    this.openLoading();
+    this.postProvider.getLastPost().subscribe(
+      data => {
+        this.lastPosts = data;
+        console.log(data);
+        console.log(this.lastPosts);
+        this.closeLoading();
+      }, error => {
+        this.alert(error.message);
+        console.log(error);
+        this.closeLoading();
       }
-      
-  }
- 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad UserPage');
+    )
   }
 
-  openMensagens(): any{
-    this.navCtrl.push(MensagensPage);
+  alert(mensagem){
+    const alert = this.alertCtrl.create({
+      subTitle:''+ mensagem,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
-  openPosts(){
-    this.navCtrl.push(PostsPage);
+  openMensagens() {
+    this.navCtrl.push(MensagensPage.name, { 'userId': this.user.id });
   }
 
-  openExibirPost(posts){
-    this.navCtrl.push(ExibirPostPage,{'post': posts});
+  openPosts() {
+    this.navCtrl.push(PostsPage.name);
   }
 
-  backToLogin(): any{
-    this.navCtrl.popToRoot()
+  openExibirPost(lastPosts) {
+    this.navCtrl.push(ExibirPostPage.name, { 'post': lastPosts });
   }
 
-  openAlterarFoto(){
-    this.navCtrl.push(AlterarFotoPage);
+  backToLogin() {
+    this.logout();
+  }
+
+  openAlterarFoto() {
+    this.navCtrl.push(AlterarFotoPage.name);
+  }
+
+  logout() {
+    const confirm = this.alertCtrl.create({
+      subTitle: "deseja sair? ",
+      buttons: [
+        {
+          text: 'Nao',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Sim',
+          handler: () => {
+            this.navCtrl.setRoot(LoginPage.name);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  openLoading() {
+    this.loader = this.loadingCtrl.create({
+      content: "Carregando..."
+    });
+    this.loader.present();
+  }
+
+  closeLoading() {
+    this.loader.dismiss();
   }
 
 }

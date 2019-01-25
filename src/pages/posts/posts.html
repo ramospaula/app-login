@@ -14,11 +14,13 @@
 
 
 <ion-content padding>
-
-
-    
-
-    <ion-list *ngFor="let posts of listaPosts" (click)="openExibirPost(posts)">
-      <post [meuTitulo] = "posts.tituloPost" [meuPost] = "posts.post" [minhaData] = "posts.dataPublicacao"></post>
+  
+    <ion-list id="card" *ngFor="let posts of allPost" (click)="openExibirPost(posts)">  
+      <post [meuPost] = "posts"></post>
       </ion-list>
+      <ion-list>
+        <ion-item>
+      <p *ngIf= "allPost==null">nenhum post foi encontrado</p>
+    </ion-item>
+    </ion-list>
 </ion-content>

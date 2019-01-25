@@ -17,28 +17,28 @@
     <ion-list >
         <ion-item (click)="openAlterarFoto()">
           <ion-avatar item-start  >
-            <img src="assets/imgs/perfil.png">
+            <h4> {{sigla}}</h4>
           </ion-avatar>
-          <h2>Ana Ramos</h2>
-          <p><i>anaramos</i></p>
+          <div *ngIf="user!=null">
+          <h2>{{user.nome}}</h2>
+          <p><i>{{user.login}}</i></p>
+        </div>
         </ion-item>
       </ion-list>
     
 
-
-      <ion-list (click)="openExibirPost(posts)">
-
-          <post [meuTitulo] = "posts.tituloPost" [meuPost] = "posts.post" [minhaData] = "posts.dataPublicacao"></post>
+<div id="card" *ngIf="lastPosts != null">
+      
+        
+          <post [meuPost] = "lastPosts" (click)="openExibirPost(lastPosts)"></post>
 
         
-    </ion-list>
-
-
-
+  
+  </div>
 
     <button ion-button block (click)="openMensagens()">Mensagens</button>
     <button ion-button block (click)="openPosts()">Posts</button>
-    <br><br><br>
+    
     
     <button ion-button block (click)="backToLogin()" id= "botaologout">LOGOUT</button>
 

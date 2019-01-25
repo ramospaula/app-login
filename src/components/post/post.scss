@@ -1,10 +1,20 @@
 post {
     #data {
         text-align: right;
-    
     }
 
     #ret{
         display: table-caption;
+    }
+
+    #card{
+        background-color:#C0C0C0;
+        border-radius: 7%;
+    }
+
+    .card-md p {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
     }
 }

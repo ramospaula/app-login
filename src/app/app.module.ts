@@ -7,15 +7,17 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPageModule } from '../pages/login/login.module';
-import { UserPageModule } from '../pages/user/user.module';
 import { CameraPage } from '../pages/camera/camera';
 import { GaleriaPage } from '../pages/galeria/galeria';
-import { AlterarFotoPageModule } from '../pages/alterar-foto/alterar-foto.module';
-import { MensagensPageModule } from '../pages/mensagens/mensagens.module';
-import { ExibirMensagemPageModule } from '../pages/exibir-mensagem/exibir-mensagem.module';
-import { ExibirPostPageModule } from '../pages/exibir-post/exibir-post.module';
 import { ComponentsModule } from '../components/components.module';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { PostProvider } from '../providers/post/post';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginProvider } from '../providers/login/login';
+import { IonicStorageModule } from '@ionic/storage';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import localeptBr from '@angular/common/locales/pt'
+
+registerLocaleData(localeptBr);
 
 @NgModule({
   declarations: [
@@ -29,11 +31,8 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     LoginPageModule,
-    UserPageModule,
-    AlterarFotoPageModule,
-    MensagensPageModule,
-    ExibirMensagemPageModule,
-    ExibirPostPageModule
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,10 +42,12 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     GaleriaPage
   ],
   providers: [
+    DatePipe,
     StatusBar,
     SplashScreen,
-    ScreenOrientation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PostProvider,
+    LoginProvider,
   ]
 })
 export class AppModule {}

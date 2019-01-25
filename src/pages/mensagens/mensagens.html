@@ -15,19 +15,17 @@
 
 <ion-content padding>
 
-  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-  <ion-list>
-    <ion-item *ngFor="let item of items">
-      {{ item }}
-    </ion-item>
-  </ion-list>
-
-  <ion-list *ngFor="let item of listaMensagem">
-      <ion-item (click)="openExibirMensagem(item)">
-        <h2>{{item.nome}}</h2>
-        <p>{{item.msg}}</p>
+<div >
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list *ngIf="message != null">
+      <ion-item *ngFor="let item of message" (click)="openExibirMensagem(item)">
+        <h2>{{item}}</h2>
       </ion-item>
-    </ion-list> 
-
-
+    </ion-list>
+    <ion-list>
+      <ion-item>
+    <p *ngIf= "!message.length || message == null">nenhuma mensagem foi encontrada</p>
+      </ion-item>
+  </ion-list>
+  </div>
 </ion-content>

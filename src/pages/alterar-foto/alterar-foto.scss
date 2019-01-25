@@ -15,10 +15,28 @@ page-alterar-foto {
         float: right;
     }
 
-    .ion-md-time{
-        color: red !important;
+
+    #icon1{
+        width: 60px;
+        color: #4a8bfc;
+        font-size: -webkit-xxx-large;
+        position: relative;
+        left: 25%;
     }
-    .ion-ios-time{
-        color: red !important;
+
+    #icon2{
+        
+        width: 60px;
+        color: #4a8bfc;
+        font-size: -webkit-xxx-large;
+        float: right;
+        position: absolute;
+        left: 65%;
     }
+
+    ion-footer {
+        height: 70px;
+    }
+
+
 }
