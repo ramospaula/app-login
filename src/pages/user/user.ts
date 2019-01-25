@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { MensagensPage } from '../mensagens/mensagens';
 import { PostsPage } from '../posts/posts';
 import { AlterarFotoPage } from '../alterar-foto/alterar-foto';
@@ -21,10 +21,13 @@ export class UserPage {
   user: any;
   sigla: any;
 
+  public loader;
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     private postProvider: PostProvider,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController,
+    public loadingCtrl: LoadingController) {
     this.lastPost();
     this.user = this.navParams.get('user');
   }
@@ -50,15 +53,17 @@ export class UserPage {
   }
 
   lastPost() {
+    this.openLoading();
     this.postProvider.getLastPost().subscribe(
       data => {
         this.lastPosts = data;
         console.log(data);
         console.log(this.lastPosts);
-
+        this.closeLoading();
       }, error => {
         this.alert(error.message);
         console.log(error);
+        this.closeLoading();
       }
     )
   }
@@ -109,6 +114,17 @@ export class UserPage {
       ]
     });
     confirm.present();
+  }
+
+  openLoading() {
+    this.loader = this.loadingCtrl.create({
+      content: "Carregando..."
+    });
+    this.loader.present();
+  }
+
+  closeLoading() {
+    this.loader.dismiss();
   }
 
 }

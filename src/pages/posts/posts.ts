@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { ExibirPostPage } from '../exibir-post/exibir-post';
 import { PostProvider } from '../../providers/post/post';
 
@@ -17,11 +17,13 @@ import { PostProvider } from '../../providers/post/post';
 export class PostsPage {
 
   public allPost:any = new Array;
+  public loader;
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private postProvider: PostProvider,
-     private alertCtrl: AlertController
+     private alertCtrl: AlertController,
+     public loadingCtrl: LoadingController
      ) {
   }
 
@@ -35,15 +37,17 @@ export class PostsPage {
   }
   
   allPosts(){
+    this.openLoading();
     this.postProvider.getPostList().subscribe(
       data => {
         this.allPost = data;
         console.log(data);
         console.log(this.allPost);
+        this.closeLoading();
       }, error => {
         this.alert(error.message);
         console.log(error)
-       
+       this.closeLoading();
       }
     )
   }
@@ -56,6 +60,15 @@ export class PostsPage {
     alert.present();
   }
 
+  openLoading() {
+    this.loader = this.loadingCtrl.create({
+      content: "Carregando..."
+    });
+    this.loader.present();
+  }
 
+  closeLoading() {
+    this.loader.dismiss();
+  }
 
 }

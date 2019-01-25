@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { ExibirMensagemPage } from '../exibir-mensagem/exibir-mensagem';
 import { PostProvider } from '../../providers/post/post';
 /**
@@ -21,27 +21,41 @@ export class MensagensPage {
   public message:any = new Array;
   public filtro:any = new Array;
   public id;
+  public loader;
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     private messagePost: PostProvider,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController,
+    public loadingCtrl: LoadingController) {
 
     this.id = this.navParams.get('userId');
-      this.messagePost.getMessageList(this.id).subscribe(
-        data => {
-          this.message = data;
-          this.filtro = this.message;
-          
-          console.log(data);
-        }, error => {
-          this.alert(error.message) 
-          console.log(error);
-        }
-      )
-      console.log(this.id);
-      console.log(this.message);
-      this.initializeItems();
+      
       };
+
+      ionViewDidLoad() {
+        this.mensagens();
+        console.log('ionViewDidLoad MensagensPage');
+      } 
+
+      mensagens(){
+        this.openLoading();
+        this.messagePost.getMessageList(this.id).subscribe(
+          data => {
+            this.message = data;
+            this.filtro = this.message;
+            console.log(data);
+            this.closeLoading();
+          }, error => {
+            this.alert(error.message) 
+            console.log(error);
+            this.closeLoading();
+          }
+        )
+        console.log(this.id);
+        console.log(this.message);
+        this.initializeItems();
+      }
       
       alert(mensagem){
         const alert = this.alertCtrl.create({
@@ -67,14 +81,22 @@ export class MensagensPage {
     }
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MensagensPage');
-  } 
 
 
 
   openExibirMensagem(item){
     this.navCtrl.push(ExibirMensagemPage.name,{'id': item});
+  }
+
+  openLoading() {
+    this.loader = this.loadingCtrl.create({
+      content: "Carregando..."
+    });
+    this.loader.present();
+  }
+
+  closeLoading() {
+    this.loader.dismiss();
   }
 
 }

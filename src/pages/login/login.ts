@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, NavOptions } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, NavOptions, LoadingController } from 'ionic-angular';
 import { UserPage } from '../user/user';
 import { LoginProvider } from '../../providers/login/login';
 import { AlertController } from 'ionic-angular';
@@ -28,12 +28,14 @@ export class LoginPage {
   public checkedBox: boolean;
 
   public user;
+  public loader;
   
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private loginProvider: LoginProvider,
     private alertCtrl: AlertController,
+    public loadingCtrl: LoadingController
     ) {
       
   }
@@ -53,8 +55,10 @@ export class LoginPage {
   }
   
   openUserLogin(username: string, password: string){
+    this.openLoading();
     this.loginProvider.postLogin(username, password).then((result: any) => {
       console.log(result);
+      this.closeLoading();
       this.navCtrl.setRoot(UserPage.name,{'user': result});
     }).catch((error: any) => {
       if(error.message){
@@ -72,6 +76,17 @@ export class LoginPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  openLoading() {
+    this.loader = this.loadingCtrl.create({
+      content: "Carregando..."
+    });
+    this.loader.present();
+  }
+
+  closeLoading() {
+    this.loader.dismiss();
   }
   
   

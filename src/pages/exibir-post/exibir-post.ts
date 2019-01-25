@@ -16,7 +16,9 @@ import { DatePipe } from '@angular/common';
 export class ExibirPostPage {
 
   public post;
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
     private datepipe: DatePipe) {
       this.datepipe = new DatePipe("pt-BR")
     this.post = this.navParams.get('post');
