@@ -19,10 +19,13 @@
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
   <ion-list *ngIf="message != null">
       <ion-item *ngFor="let item of message" (click)="openExibirMensagem(item)">
-        <h2>{{item}}</h2> 
-        <p></p>
+        <h2>{{item}}</h2>
       </ion-item>
-    </ion-list> 
+    </ion-list>
+    <ion-list>
+      <ion-item>
+    <p *ngIf= "!message.length || message == null">nenhuma mensagem foi encontrada</p>
+      </ion-item>
+  </ion-list>
   </div>
-
 </ion-content>

@@ -18,4 +18,9 @@
     <ion-list id="card" *ngFor="let posts of allPost" (click)="openExibirPost(posts)">  
       <post [meuPost] = "posts"></post>
       </ion-list>
+      <ion-list>
+        <ion-item>
+      <p *ngIf= "allPost==null">nenhum post foi encontrado</p>
+    </ion-item>
+    </ion-list>
 </ion-content>

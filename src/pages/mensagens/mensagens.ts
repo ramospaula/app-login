@@ -22,6 +22,7 @@ export class MensagensPage {
   public filtro:any = new Array;
   public id;
   public loader;
+  public empty;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
