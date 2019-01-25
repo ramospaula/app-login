@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ExibirMensagemPage } from '../exibir-mensagem/exibir-mensagem';
 import { PostProvider } from '../../providers/post/post';
-import { StorageUserProvider } from '../../providers/storage-user/storage-user';
 
 /**
  * Generated class for the MensagensPage page.
@@ -22,11 +21,10 @@ export class MensagensPage {
 
   public message:any = new Array;
   public filtro:any = new Array;
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams, private messagePost: PostProvider, private storageUser: StorageUserProvider) {
-    
-    this.storageUser.getUser().then(result => {
-      this.messagePost.getMessageList(result.id).subscribe(
+  public id;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private messagePost: PostProvider,) {
+    this.id = this.navParams.get('userId');
+      this.messagePost.getMessageList(this.id).subscribe(
         data => {
           this.message = data;
           this.filtro = this.message;
@@ -35,11 +33,12 @@ export class MensagensPage {
           console.log(error);
         }
       )
-      console.log(result.id);
+      console.log(this.id);
       console.log(this.message);
-      });
       this.initializeItems();
-  }
+      };
+      
+  
 
   initializeItems() {
     this.message = this.filtro;
@@ -68,3 +67,4 @@ export class MensagensPage {
   }
 
 }
+

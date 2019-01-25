@@ -6,7 +6,6 @@ import { AlterarFotoPage } from '../alterar-foto/alterar-foto';
 import { ExibirPostPage } from '../exibir-post/exibir-post';
 import { PostProvider } from '../../providers/post/post';
 import { LoginPage } from '../login/login';
-import { StorageUserProvider } from '../../providers/storage-user/storage-user';
 
 
 @IonicPage()
@@ -15,28 +14,26 @@ import { StorageUserProvider } from '../../providers/storage-user/storage-user';
   templateUrl: 'user.html',
 })
 export class UserPage {
-/* public posts; */
-public lastPosts: any;
+  /* public posts; */
+  public lastPosts: any;
 
 
- user: any;
- sigla: any;
+  user: any;
+  sigla: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private postProvider: PostProvider, private storageUser: StorageUserProvider) {
-    this.lastPost(); 
+  constructor(public navCtrl: NavController, public navParams: NavParams, private postProvider: PostProvider) {
+    this.lastPost();
+    this.user = this.navParams.get('user');
   }
- 
+
   ngOnInit() {
-    this.storageUser.getUser().then(result => {
-      this.user = (result);
-      console.log(this.user);
-      this.getBeginName();
-      });
 
-    console.log('ionViewDidLoad UserPage');
-  }
+    console.log(this.user);
+    this.getBeginName();
+  };
 
-  getBeginName(){
+
+  getBeginName() {
     let str = this.user.nome;
     let res = str.split(" ");
     let firth = res[0].charAt(0);
@@ -49,38 +46,37 @@ public lastPosts: any;
     console.log(sigla);
   }
 
-  lastPost(){
+  lastPost() {
     this.postProvider.getLastPost().subscribe(
       data => {
         this.lastPosts = data;
         console.log(data);
         console.log(this.lastPosts);
-        
+
       }, error => {
         console.log(error);
       }
     )
   }
 
- 
-  openMensagens(){
-    this.navCtrl.push(MensagensPage.name);
+
+  openMensagens() {
+    this.navCtrl.push(MensagensPage.name, { 'userId': this.user.id });
   }
 
-  openPosts(){
+  openPosts() {
     this.navCtrl.push(PostsPage.name);
   }
 
-  openExibirPost(lastPosts){
-    this.navCtrl.push(ExibirPostPage.name,{'post': lastPosts});
+  openExibirPost(lastPosts) {
+    this.navCtrl.push(ExibirPostPage.name, { 'post': lastPosts });
   }
 
-  backToLogin(){
-    this.storageUser.remove();
+  backToLogin() {
     this.navCtrl.setRoot(LoginPage.name);
   }
 
-  openAlterarFoto(){
+  openAlterarFoto() {
     this.navCtrl.push(AlterarFotoPage.name);
   }
 
