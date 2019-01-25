@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ExibirPostPage } from '../exibir-post/exibir-post';
 import { PostProvider } from '../../providers/post/post';
 
@@ -20,7 +20,8 @@ export class PostsPage {
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
-     private postProvider: PostProvider
+     private postProvider: PostProvider,
+     private alertCtrl: AlertController
      ) {
   }
 
@@ -40,9 +41,19 @@ export class PostsPage {
         console.log(data);
         console.log(this.allPost);
       }, error => {
-        console.log(error);
+        this.alert(error.message);
+        console.log(error)
+       
       }
     )
+  }
+
+  alert(mensagem){
+    const alert = this.alertCtrl.create({
+      subTitle:''+ mensagem,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 

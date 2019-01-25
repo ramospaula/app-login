@@ -30,6 +30,7 @@ export class LoginProvider {
           console.log(result);
         },
         (error) => {
+          console.log(error);
           reject(error);
         });
     });

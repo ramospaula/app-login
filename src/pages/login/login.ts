@@ -57,14 +57,21 @@ export class LoginPage {
       console.log(result);
       this.navCtrl.setRoot(UserPage.name,{'user': result});
     }).catch((error: any) => {
-      const alert = this.alertCtrl.create({
-        title: 'codigo ' + error.error.erro.codigo,
-        subTitle: error.error.erro.mensagem,
-        buttons: ['OK']
-      });
-      alert.present();
+      if(error.message){
+        this.alert(error.message)
+      }else{
+      this.alert(error.error.erro.mensagem);
+      }
     });
       
+  }
+
+  alert(mensagem){
+    const alert = this.alertCtrl.create({
+      subTitle: mensagem,
+      buttons: ['OK']
+    });
+    alert.present();
   }
   
   

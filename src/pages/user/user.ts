@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { MensagensPage } from '../mensagens/mensagens';
 import { PostsPage } from '../posts/posts';
 import { AlterarFotoPage } from '../alterar-foto/alterar-foto';
@@ -21,7 +21,10 @@ export class UserPage {
   user: any;
   sigla: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private postProvider: PostProvider) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private postProvider: PostProvider,
+    private alertCtrl: AlertController) {
     this.lastPost();
     this.user = this.navParams.get('user');
   }
@@ -54,11 +57,19 @@ export class UserPage {
         console.log(this.lastPosts);
 
       }, error => {
+        this.alert(error.message);
         console.log(error);
       }
     )
   }
 
+  alert(mensagem){
+    const alert = this.alertCtrl.create({
+      subTitle:''+ mensagem,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 
   openMensagens() {
     this.navCtrl.push(MensagensPage.name, { 'userId': this.user.id });
@@ -73,11 +84,31 @@ export class UserPage {
   }
 
   backToLogin() {
-    this.navCtrl.setRoot(LoginPage.name);
+    this.logout();
   }
 
   openAlterarFoto() {
     this.navCtrl.push(AlterarFotoPage.name);
+  }
+
+  logout() {
+    const confirm = this.alertCtrl.create({
+      subTitle: "deseja sair? ",
+      buttons: [
+        {
+          text: 'Nao',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Sim',
+          handler: () => {
+            this.navCtrl.setRoot(LoginPage.name);
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
 }
