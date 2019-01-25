@@ -10,16 +10,13 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class StorageUserProvider {
 
-  usuario = {
-    user:'',
-    photo: ''
-  };
+ 
+
   constructor(public http: HttpClient, private storage: Storage) {
     console.log('Hello StorageUserProvider Provider');
   }
 
   public save(user){
-    this.usuario.user = user;
     return this.storage.set('user', user);
   }
 
@@ -32,13 +29,12 @@ export class StorageUserProvider {
     return this.storage.remove('user');
   }
 
-  public savePhoto(photo){
-    this.usuario.photo = photo;
-    return this.storage.set('photo', photo);
+  public savePhoto(id, photo){
+    return this.storage.set(id, photo);
   }
 
-  public getPhoto(){ 
-    return this.storage.get('photo');
+  public getPhoto(id){ 
+    return this.storage.get(id);
   }
 
 }

@@ -27,9 +27,7 @@ public lastPosts: any;
  photo;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private postProvider: PostProvider, private storageUser: StorageUserProvider) {
-    this.lastPost(); 
-    this.getPhoto();
-
+    this.lastPost();
   }
  
   ngOnInit() {
@@ -44,7 +42,8 @@ public lastPosts: any;
     console.log('ionViewDidLoad UserPage');
   }
 
-  ionViewDidLoad() { 
+
+  ionViewWillEnter(){
     this.getPhoto();
   }
 
@@ -71,7 +70,7 @@ public lastPosts: any;
   }
 
   getPhoto(){
-    this.storageUser.getPhoto().then(result => {
+    this.storageUser.getPhoto(this.id).then(result => {
       this.photo = result;
       console.log("hey");
       console.log(this.photo);

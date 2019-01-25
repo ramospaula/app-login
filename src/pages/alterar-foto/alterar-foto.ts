@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { StorageUserProvider } from '../../providers/storage-user/storage-user';
-import { identifierModuleUrl } from '@angular/compiler';
 
 /**
  * Generated class for the AlterarFotoPage page.
@@ -28,7 +27,7 @@ export class AlterarFotoPage {
   options:any;
 
   takePicture(tipo) {
-    /* this.photo = '';
+     this.photo = '';
 
 
     const options: CameraOptions = {
@@ -51,29 +50,15 @@ export class AlterarFotoPage {
     this.camera.getPicture(this.options)
     .then((imageData) => {
       this.photo = 'data:image/jpeg;base64,' + imageData;
-
-    }, (error) => {
-      console.error(error);
-    })
-    .catch((error) => {
-      console.error(error);
-    }) */
-    this.photo = tipo;
-    this.photoStorage.savePhoto(this.photo);
-
-}
-
-getImage(){
-  this.camera.getPicture(this.options)
-    .then((imageData) => {
-      this.photo = 'data:image/jpeg;base64,' + imageData;
-
+      this.photoStorage.savePhoto(this.id, this.photo);
     }, (error) => {
       console.error(error);
     })
     .catch((error) => {
       console.error(error);
     })
+    
+
 }
 
 }
