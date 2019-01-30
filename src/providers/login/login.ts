@@ -6,12 +6,14 @@ import hasha  from 'hasha';
 
 @Injectable()
 export class LoginProvider {
-
+  
 
   constructor(public http: HttpClient
     ) {
     console.log('Hello LoginProvider Provider');
   }
+
+  
 
   postLogin(username, password) {
 

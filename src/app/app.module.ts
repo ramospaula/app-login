@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPageModule } from '../pages/login/login.module';
@@ -13,9 +14,11 @@ import { ComponentsModule } from '../components/components.module';
 import { PostProvider } from '../providers/post/post';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginProvider } from '../providers/login/login';
-import { IonicStorageModule } from '@ionic/storage';
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeptBr from '@angular/common/locales/pt'
+import { SessionProvider } from '../providers/session/session';
+import { UserPage } from '../pages/user/user';
+
 
 registerLocaleData(localeptBr);
 
@@ -30,9 +33,9 @@ registerLocaleData(localeptBr);
     ComponentsModule, 
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     LoginPageModule,
-    HttpClientModule,
-    IonicStorageModule.forRoot()
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -48,6 +51,7 @@ registerLocaleData(localeptBr);
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PostProvider,
     LoginProvider,
+    SessionProvider,
   ]
 })
 export class AppModule {}

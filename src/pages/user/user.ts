@@ -6,6 +6,7 @@ import { AlterarFotoPage } from '../alterar-foto/alterar-foto';
 import { ExibirPostPage } from '../exibir-post/exibir-post';
 import { PostProvider } from '../../providers/post/post';
 import { LoginPage } from '../login/login';
+import { SessionProvider } from '../../providers/session/session';
 
 
 @IonicPage()
@@ -21,29 +22,33 @@ export class UserPage {
   user: any;
   sigla: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private postProvider: PostProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private postProvider: PostProvider, private sessionProvider:SessionProvider) {
     this.lastPost();
-    this.user = this.navParams.get('user');
   }
 
   ngOnInit() {
 
+    this.sessionProvider.getUser().then((result: any) => {
+      this.user = result;
+    })
+
     console.log(this.user);
-    this.getBeginName();
+    if (this.user != null){
+      this.getBeginName();
+    }
+    
   };
 
 
   getBeginName() {
+    if (this.user != null){
     let str = this.user.nome;
     let res = str.split(" ");
     let firth = res[0].charAt(0);
     let last = res[res.length - 1].charAt(0);
     let sigla = firth.concat(last);
     this.sigla = sigla;
-    console.log(res);
-    console.log(firth);
-    console.log(last);
-    console.log(sigla);
+    }
   }
 
   lastPost() {
@@ -73,6 +78,8 @@ export class UserPage {
   }
 
   backToLogin() {
+    this.sessionProvider.removeUser();
+    this.sessionProvider.removeCheck();
     this.navCtrl.setRoot(LoginPage.name);
   }
 
