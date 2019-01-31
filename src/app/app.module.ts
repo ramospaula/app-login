@@ -4,18 +4,18 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPageModule } from '../pages/login/login.module';
-import { CameraPage } from '../pages/camera/camera';
-import { GaleriaPage } from '../pages/galeria/galeria';
 import { ComponentsModule } from '../components/components.module';
 import { PostProvider } from '../providers/post/post';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginProvider } from '../providers/login/login';
-import { IonicStorageModule } from '@ionic/storage';
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeptBr from '@angular/common/locales/pt'
+import { Camera } from '@ionic-native/camera';
+import { StorageUserProvider } from '../providers/storage-user/storage-user';
 
 registerLocaleData(localeptBr);
 
@@ -23,23 +23,19 @@ registerLocaleData(localeptBr);
   declarations: [
     MyApp,
     HomePage,
-    CameraPage,
-    GaleriaPage
   ],
   imports: [
     ComponentsModule, 
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     LoginPageModule,
-    HttpClientModule,
-    IonicStorageModule.forRoot()
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage, 
-    CameraPage,
-    GaleriaPage
+    HomePage,
   ],
   providers: [
     DatePipe,
@@ -48,6 +44,8 @@ registerLocaleData(localeptBr);
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PostProvider,
     LoginProvider,
+    StorageUserProvider,
+    Camera
   ]
 })
 export class AppModule {}

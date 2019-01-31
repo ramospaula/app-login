@@ -6,6 +6,8 @@ import { AlterarFotoPage } from '../alterar-foto/alterar-foto';
 import { ExibirPostPage } from '../exibir-post/exibir-post';
 import { PostProvider } from '../../providers/post/post';
 import { LoginPage } from '../login/login';
+import { LoginProvider } from '../../providers/login/login';
+import { StorageUserProvider } from '../../providers/storage-user/storage-user';
 
 
 @IonicPage()
@@ -14,7 +16,6 @@ import { LoginPage } from '../login/login';
   templateUrl: 'user.html',
 })
 export class UserPage {
-  /* public posts; */
   public lastPosts: any;
 
 
@@ -22,34 +23,38 @@ export class UserPage {
   sigla: any;
 
   public loader;
+  foto;
+  two: any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     private postProvider: PostProvider,
     private alertCtrl: AlertController,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController, 
+    private storageUser:StorageUserProvider, 
+    public loginProvider:LoginProvider) {
     this.lastPost();
     this.user = this.navParams.get('user');
   }
 
   ngOnInit() {
+    this.storageUser.getUser().then(result => {
+      this.user = (result);
+      console.log(this.user);
+      this.getBeginName();
+      this.getPhoto();
+      });
+  }
 
-    console.log(this.user);
-    this.getBeginName();
-  };
+  ionViewWillEnter(){
+    this.getPhoto();
+  }
 
-
-  getBeginName() {
-    let str = this.user.nome;
-    let res = str.split(" ");
+  getBeginName(){
+    let res = this.user.nome.split(" ");
     let firth = res[0].charAt(0);
     let last = res[res.length - 1].charAt(0);
-    let sigla = firth.concat(last);
-    this.sigla = sigla;
-    console.log(res);
-    console.log(firth);
-    console.log(last);
-    console.log(sigla);
+    this.sigla = firth.concat(last);
   }
 
   lastPost() {
@@ -79,6 +84,19 @@ export class UserPage {
   openMensagens() {
     this.navCtrl.push(MensagensPage.name, { 'userId': this.user.id });
   }
+  
+  getPhoto(){
+    this.storageUser.getPhoto(this.user.id).then(result => {
+      this.foto = result;
+      console.log("hey");
+      console.log(this.foto);
+      if(this.foto == null){
+        console.log("eu sou null");
+      }else{
+        console.log("nao sou null");
+      }
+    })
+  }
 
   openPosts() {
     this.navCtrl.push(PostsPage.name);
@@ -87,13 +105,16 @@ export class UserPage {
   openExibirPost(lastPosts) {
     this.navCtrl.push(ExibirPostPage.name, { 'post': lastPosts });
   }
-
+ 
   backToLogin() {
     this.logout();
+    this.storageUser.remove();
+    this.storageUser.removeCheck();
   }
 
-  openAlterarFoto() {
-    this.navCtrl.push(AlterarFotoPage.name);
+  
+  openAlterarFoto(){
+    this.navCtrl.push(AlterarFotoPage.name, {'idUser': this.user.id});
   }
 
   logout() {

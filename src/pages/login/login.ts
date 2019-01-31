@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, NavOptions, LoadingController } fr
 import { UserPage } from '../user/user';
 import { LoginProvider } from '../../providers/login/login';
 import { AlertController } from 'ionic-angular';
+import { StorageUserProvider } from '../../providers/storage-user/storage-user';
+
 
 /**
  * Generated class for the LoginPage page.
@@ -18,12 +20,12 @@ import { AlertController } from 'ionic-angular';
   providers: [
     LoginProvider,
   ]
-})  
+})
 
 
 
 export class LoginPage {
-   
+
   buttonDisabled: boolean;
   public checkedBox: boolean;
 
@@ -31,35 +33,53 @@ export class LoginPage {
   public loader;
   
 
-  constructor(public navCtrl: NavController, 
+   one: any;
+
+
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private loginProvider: LoginProvider,
     private alertCtrl: AlertController,
-    public loadingCtrl: LoadingController
-    ) {
+    public loadingCtrl: LoadingController,
+    private storage: StorageUserProvider
+    ) { 
       
-  }
- 
-  ionViewDidEnter() {
+    }
+
+
+  ionViewWillEnter() {
     this.buttonDisabled = true;
-    this.checkedBox = false;
-  } 
+    this.retornaUser();
+  }
+   
+  retornaUser(){
+      this.storage.getUser().then((result: any) => {
+        this.one = result;
+        console.log(result);
+      });
+  }
 
-
-  onChangeTime(username, password){
-    if( (password.length >= 4) && (username.length >= 3) ){
+  onChangeTime(username, password) {
+    if ((password.length >= 4) && (username.length >= 3)) {
       return this.buttonDisabled = false;
-    }else{
-      return this.buttonDisabled = true; 
+    } else {
+      return this.buttonDisabled = true;
     }
   }
-  
-  openUserLogin(username: string, password: string){
+
+  openUserLogin(username: string, password: string) {
     this.openLoading();
     this.loginProvider.postLogin(username, password).then((result: any) => {
       console.log(result);
       this.closeLoading();
-      this.navCtrl.setRoot(UserPage.name,{'user': result});
+      this.navCtrl.setRoot(UserPage.name, { 'user': result });
+      this.storage.save(result);
+        if (this.checkedBox){
+          this.storage.saveCheck(this.checkedBox);
+        } else {
+          this.storage.removeCheck();
+        }
+      
     }).catch((error: any) => {
       if(error.message){
         this.alert(error.message)
@@ -67,7 +87,8 @@ export class LoginPage {
       this.alert(error.error.erro.mensagem);
       }
     });
-      
+    
+
   }
 
   alert(mensagem){
@@ -90,7 +111,8 @@ export class LoginPage {
   }
   
   
+
 }
-  
+
 
 

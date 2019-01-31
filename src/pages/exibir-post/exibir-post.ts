@@ -20,7 +20,7 @@ export class ExibirPostPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private datepipe: DatePipe) {
-      this.datepipe = new DatePipe("pt-BR")
+      this.datepipe = new DatePipe("pt-BR");
     this.post = this.navParams.get('post');
   }
 
