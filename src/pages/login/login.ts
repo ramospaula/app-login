@@ -78,11 +78,10 @@ export class LoginPage {
     this.loginProvider.postLogin(username, password).then((result: any) => {
       console.log(result);
       this.navCtrl.setRoot(UserPage.name, { 'user': result });
+      this.sessionProvider.setUser(result);
         if (this.checkedBox){
-          this.sessionProvider.setUser(result);
           this.sessionProvider.saveCheck(this.checkedBox);
         } else {
-          this.sessionProvider.removeUser();
           this.sessionProvider.removeCheck();
         }
       
