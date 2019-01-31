@@ -14,6 +14,7 @@ import { LoginPage } from '../login/login';
   templateUrl: 'user.html',
 })
 export class UserPage {
+<<<<<<< HEAD
   /* public posts; */
   public lastPosts: any;
 
@@ -24,26 +25,58 @@ export class UserPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private postProvider: PostProvider) {
     this.lastPost();
     this.user = this.navParams.get('user');
+=======
+
+
+public lastPosts: any;
+
+
+ user: any;
+ sigla: any;
+ id;
+
+ photo;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private postProvider: PostProvider, private storageUser: StorageUserProvider) {
+    this.lastPost();
+>>>>>>> feature
   }
 
   ngOnInit() {
+<<<<<<< HEAD
+=======
+    this.storageUser.getUser().then(result => {
+      this.user = (result);
+      this.id = result.id;
+      console.log(this.user);
+      this.getBeginName();
+      this.getPhoto();
+      });
+>>>>>>> feature
 
     console.log(this.user);
     this.getBeginName();
   };
 
 
+<<<<<<< HEAD
   getBeginName() {
     let str = this.user.nome;
     let res = str.split(" ");
+=======
+
+  ionViewWillEnter(){
+    this.getPhoto();
+  }
+
+
+
+  getBeginName(){
+    let res = this.user.nome.split(" ");
+>>>>>>> feature
     let firth = res[0].charAt(0);
     let last = res[res.length - 1].charAt(0);
-    let sigla = firth.concat(last);
-    this.sigla = sigla;
-    console.log(res);
-    console.log(firth);
-    console.log(last);
-    console.log(sigla);
+    this.sigla = firth.concat(last);
   }
 
   lastPost() {
@@ -59,9 +92,28 @@ export class UserPage {
     )
   }
 
+<<<<<<< HEAD
 
   openMensagens() {
     this.navCtrl.push(MensagensPage.name, { 'userId': this.user.id });
+=======
+  getPhoto(){
+    this.storageUser.getPhoto(this.id).then(result => {
+      this.photo = result;
+      console.log("hey");
+      console.log(this.photo);
+      if(this.photo == null){
+        console.log("eu sou null");
+      }else{
+        console.log("nao sou null");
+      }
+    })
+  }
+
+ 
+  openMensagens(){
+    this.navCtrl.push(MensagensPage.name);
+>>>>>>> feature
   }
 
   openPosts() {
@@ -76,8 +128,13 @@ export class UserPage {
     this.navCtrl.setRoot(LoginPage.name);
   }
 
+<<<<<<< HEAD
   openAlterarFoto() {
     this.navCtrl.push(AlterarFotoPage.name);
+=======
+  openAlterarFoto(){
+    this.navCtrl.push(AlterarFotoPage.name, {'idUser': this.id});
+>>>>>>> feature
   }
 
 }
