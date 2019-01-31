@@ -20,18 +20,15 @@ export class AlterarFotoPage {
   photo: string = ''
   id;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera, private photoStorage: StorageUserProvider) {
-    this.id = this.navParams.get('idUser');
+  myphoto: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera, public photoStorage: StorageUserProvider) {
   }
-  
-  options:any;
 
-  takePicture(tipo) {
-     this.photo = '';
-
-
+  takePhoto(tipo){
+    
     const options: CameraOptions = {
-      quality: 100,
+      quality: 70,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
@@ -44,22 +41,25 @@ export class AlterarFotoPage {
       saveToPhotoAlbum: true,
       correctOrientation: true
     }
-
-    this.options = options;
-
-    this.camera.getPicture(this.options)
-    .then((imageData) => {
-      this.photo = 'data:image/jpeg;base64,' + imageData;
-      this.photoStorage.savePhoto(this.id, this.photo);
-    }, (error) => {
-      console.error(error);
-    })
-    .catch((error) => {
-      console.error(error);
-    })
     
+    this.camera.getPicture(options).then((imageData) => {
+     // imageData is either a base64 encoded string or a file URI
+     // If it's base64 (DATA_URL):
+     this.myphoto = 'data:image/jpeg;base64,' + imageData;
+     this.photoStorage.savePhoto(this.id, this.photo);    
+    }, (err) => {
+     // Handle error
+    });
+  }
+
+
+  ionViewWillEnter(){
+    this.photoStorage.getPhoto(this.id).then((result: any) => {
+      this.myphoto = result;
+    });
+  }
+
 
 }
 
-}
 

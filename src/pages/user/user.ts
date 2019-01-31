@@ -6,6 +6,8 @@ import { AlterarFotoPage } from '../alterar-foto/alterar-foto';
 import { ExibirPostPage } from '../exibir-post/exibir-post';
 import { PostProvider } from '../../providers/post/post';
 import { LoginPage } from '../login/login';
+import { LoginProvider } from '../../providers/login/login';
+import { StorageUserProvider } from '../../providers/storage-user/storage-user';
 
 
 @IonicPage()
@@ -14,66 +16,42 @@ import { LoginPage } from '../login/login';
   templateUrl: 'user.html',
 })
 export class UserPage {
-<<<<<<< HEAD
-  /* public posts; */
   public lastPosts: any;
 
 
   user: any;
   sigla: any;
+  foto;
+  two: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private postProvider: PostProvider) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private postProvider: PostProvider, 
+    private storageUser:StorageUserProvider, 
+    public loginProvider:LoginProvider) {
     this.lastPost();
     this.user = this.navParams.get('user');
-=======
-
-
-public lastPosts: any;
-
-
- user: any;
- sigla: any;
- id;
-
- photo;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private postProvider: PostProvider, private storageUser: StorageUserProvider) {
-    this.lastPost();
->>>>>>> feature
   }
 
   ngOnInit() {
-<<<<<<< HEAD
-=======
     this.storageUser.getUser().then(result => {
       this.user = (result);
-      this.id = result.id;
       console.log(this.user);
       this.getBeginName();
       this.getPhoto();
       });
->>>>>>> feature
-
-    console.log(this.user);
-    this.getBeginName();
-  };
-
-
-<<<<<<< HEAD
-  getBeginName() {
-    let str = this.user.nome;
-    let res = str.split(" ");
-=======
+  }
 
   ionViewWillEnter(){
+    this.storageUser.getPhoto(this.user.id).then((result: any) => {
+      this.foto = result;
+      console.log(this.foto);
+    });
     this.getPhoto();
   }
 
-
-
   getBeginName(){
     let res = this.user.nome.split(" ");
->>>>>>> feature
     let firth = res[0].charAt(0);
     let last = res[res.length - 1].charAt(0);
     this.sigla = firth.concat(last);
@@ -92,28 +70,17 @@ public lastPosts: any;
     )
   }
 
-<<<<<<< HEAD
-
-  openMensagens() {
-    this.navCtrl.push(MensagensPage.name, { 'userId': this.user.id });
-=======
   getPhoto(){
-    this.storageUser.getPhoto(this.id).then(result => {
-      this.photo = result;
+    this.storageUser.getPhoto(this.user.id).then(result => {
+      this.foto = result;
       console.log("hey");
-      console.log(this.photo);
-      if(this.photo == null){
+      console.log(this.foto);
+      if(this.foto == null){
         console.log("eu sou null");
       }else{
         console.log("nao sou null");
       }
     })
-  }
-
- 
-  openMensagens(){
-    this.navCtrl.push(MensagensPage.name);
->>>>>>> feature
   }
 
   openPosts() {
@@ -123,18 +90,20 @@ public lastPosts: any;
   openExibirPost(lastPosts) {
     this.navCtrl.push(ExibirPostPage.name, { 'post': lastPosts });
   }
+  
+  openMensagens() {
+    this.navCtrl.push(MensagensPage.name, { 'userId': this.user.id });
+  }
 
   backToLogin() {
+    this.storageUser.remove();
+    this.storageUser.removeCheck();
     this.navCtrl.setRoot(LoginPage.name);
   }
 
-<<<<<<< HEAD
-  openAlterarFoto() {
-    this.navCtrl.push(AlterarFotoPage.name);
-=======
+  
   openAlterarFoto(){
-    this.navCtrl.push(AlterarFotoPage.name, {'idUser': this.id});
->>>>>>> feature
+    this.navCtrl.push(AlterarFotoPage.name, {'idUser': this.user.id});
   }
 
 }

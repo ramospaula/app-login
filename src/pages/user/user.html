@@ -16,9 +16,13 @@
 
     <ion-list >
         <ion-item (click)="openAlterarFoto()">
-          <ion-avatar item-start  >
-            <h4 *ngIf="photo == null"> {{sigla}}</h4>
-            <img id="foto" *ngIf="photo != null" src="{{ photo }}" />
+          <ion-avatar item-start>
+            <div *ngIf="foto == null">
+                <h4> {{sigla}}</h4>
+            </div>
+            <div *ngIf="foto != null">
+                <img id="fotoavatar" src="{{ foto }}"/>
+              </div>  
           </ion-avatar>
           <div *ngIf="user!=null">
           <h2>{{user.nome}}</h2>

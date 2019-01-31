@@ -10,7 +10,7 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class StorageUserProvider {
 
- 
+  key2: string = 'checked';
 
   constructor(public http: HttpClient, private storage: Storage) {
     console.log('Hello StorageUserProvider Provider');
@@ -35,6 +35,19 @@ export class StorageUserProvider {
 
   public getPhoto(id){ 
     return this.storage.get(id);
+  }
+
+  saveCheck(dadocheck){
+    this.storage.set(this.key2, dadocheck);
+    console.log('Salvando:' + dadocheck);
+  }
+
+  getCheck(){
+    return this.storage.get(this.key2);
+  }
+
+  removeCheck(){
+    this.storage.remove(this.key2);
   }
 
 }
