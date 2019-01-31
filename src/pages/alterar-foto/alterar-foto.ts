@@ -38,9 +38,9 @@ export class AlterarFotoPage {
       sourceType: tipo =="foto" ?
        this.camera.PictureSourceType.CAMERA: 
        this.camera.PictureSourceType.PHOTOLIBRARY,
-      allowEdit: false,
-      targetWidth: 100,
-      targetHeight: 100,
+      allowEdit: true,
+      targetWidth: 300,
+      targetHeight: 300,
       saveToPhotoAlbum: true,
       correctOrientation: true
     }
