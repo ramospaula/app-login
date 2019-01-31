@@ -18,6 +18,7 @@ export class SessionProvider {
   key: string = 'username';
   key1: string = 'password';
   key2: string = 'checked';
+  key3: string = 'foto';
   public checkedBox: boolean;
 
   constructor(public http: HttpClient, private storage: Storage) {
@@ -27,6 +28,11 @@ export class SessionProvider {
   setUser(usuario) {
     this.storage.set(this.key, usuario);
     console.log('Salvando:' + usuario);
+  }
+
+  setFoto(photo){
+    this.storage.set(this.key3, photo);
+    console.log('Salvando:' + photo);
   }
 
   
@@ -39,6 +45,10 @@ export class SessionProvider {
   getUser() {
    return this.storage.get(this.key);
   }
+
+  getFoto(){
+    return this.storage.get(this.key3);
+  }
  
 
   removeUser(){
@@ -47,6 +57,10 @@ export class SessionProvider {
 
   removeCheck(){
     this.storage.remove(this.key2);
+  }
+
+  removeFoto(){
+    this.storage.remove(this.key3);
   }
 
   

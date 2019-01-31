@@ -7,6 +7,7 @@ import { ExibirPostPage } from '../exibir-post/exibir-post';
 import { PostProvider } from '../../providers/post/post';
 import { LoginPage } from '../login/login';
 import { SessionProvider } from '../../providers/session/session';
+import { LoginProvider } from '../../providers/login/login';
 
 
 @IonicPage()
@@ -21,8 +22,10 @@ export class UserPage {
 
   user: any;
   sigla: any;
+  foto;
+  two: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private postProvider: PostProvider, private sessionProvider:SessionProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private postProvider: PostProvider, private sessionProvider:SessionProvider, public loginProvider:LoginProvider) {
     this.lastPost();
   }
 
@@ -30,25 +33,29 @@ export class UserPage {
 
     this.sessionProvider.getUser().then((result: any) => {
       this.user = result;
+      console.log(this.user);
+      this.getBeginName(); 
     })
-
-    console.log(this.user);
-    if (this.user != null){
-      this.getBeginName();
-    }
     
-  };
+     
+  }
 
+  ionViewWillEnter(){
+    this.sessionProvider.getFoto().then((result: any) => {
+      this.foto = result;
+      console.log(this.foto);
+    });
+  }
 
   getBeginName() {
-    if (this.user != null){
     let str = this.user.nome;
     let res = str.split(" ");
     let firth = res[0].charAt(0);
     let last = res[res.length - 1].charAt(0);
     let sigla = firth.concat(last);
     this.sigla = sigla;
-    }
+    console.log(this.sigla)
+    
   }
 
   lastPost() {
@@ -63,6 +70,9 @@ export class UserPage {
       }
     )
   }
+
+  
+
 
 
   openMensagens() {
@@ -85,6 +95,7 @@ export class UserPage {
 
   openAlterarFoto() {
     this.navCtrl.push(AlterarFotoPage.name);
+
   }
 
 }

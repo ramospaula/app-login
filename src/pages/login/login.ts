@@ -39,7 +39,6 @@ export class LoginPage {
    one: any;
 
 
-
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private loginProvider: LoginProvider,
@@ -63,6 +62,8 @@ export class LoginPage {
         console.log(result);
       });
   }
+
+  
   
 
   onChangeTime(username, password) {

@@ -18,6 +18,7 @@ import { DatePipe, registerLocaleData } from '@angular/common';
 import localeptBr from '@angular/common/locales/pt'
 import { SessionProvider } from '../providers/session/session';
 import { UserPage } from '../pages/user/user';
+import { Camera } from '@ionic-native/camera';
 
 
 registerLocaleData(localeptBr);
@@ -52,6 +53,7 @@ registerLocaleData(localeptBr);
     PostProvider,
     LoginProvider,
     SessionProvider,
+    Camera
   ]
 })
 export class AppModule {}

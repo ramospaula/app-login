@@ -7,6 +7,7 @@ import hasha  from 'hasha';
 @Injectable()
 export class LoginProvider {
   
+  photo: string = null;
 
   constructor(public http: HttpClient
     ) {
@@ -39,6 +40,14 @@ export class LoginProvider {
 
   post(data){
     return this.http.post('http://aulas2.getsandbox.com/login', data);
+  }
+
+  getFotoAvatar(){
+    return this.photo;
+  }
+
+  setFotoAvatar(img){
+    return this.photo = img;
   }
 
 }
