@@ -10,6 +10,7 @@ import { SessionProvider } from '../providers/session/session';
 })
 export class MyApp {
   rootPage:any;
+  check;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public sessionProvider: SessionProvider) {
     platform.ready().then(() => {
@@ -22,8 +23,10 @@ export class MyApp {
     });
   }
   retornaUser(){
-    this.sessionProvider.getUser().then((result: any) => {
-      if(result != null){
+    this.sessionProvider.getCheck().then((result: any) => {
+      this.check = result;
+      console.log(this.check);
+      if(this.check == true){
         this.rootPage = UserPage.name;
       } else {
         this.rootPage = LoginPage.name;

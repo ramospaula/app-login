@@ -49,6 +49,10 @@ export class SessionProvider {
   getFoto(){
     return this.storage.get(this.key3);
   }
+
+  getCheck(){
+    return this.storage.get(this.key2);
+  }
  
 
   removeUser(){
