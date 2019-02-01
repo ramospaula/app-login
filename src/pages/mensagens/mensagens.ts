@@ -42,11 +42,16 @@ export class MensagensPage {
       mensagens(){
         this.openLoading();
         this.messagePost.getMessageList(this.id).subscribe(
-          data => {
+          (data : any) => {
+            if(data.erro){
+              this.alert(data.erro.mensagem);
+              this.closeLoading();
+            }else{
             this.message = data;
             this.filtro = this.message;
             console.log(data);
             this.closeLoading();
+            }
           }, error => {
             this.alert(error.message) 
             console.log(error);
@@ -81,8 +86,6 @@ export class MensagensPage {
       })
     }
   }
-
-
 
 
   openExibirMensagem(item){
