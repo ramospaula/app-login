@@ -20,13 +20,21 @@ export class AlterarFotoPage {
   photo: string = ''
   id;
 
-  myphoto: any;
-
   constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera, public photoStorage: StorageUserProvider) {
+    this.id = this.navParams.get('idUser');
+  }
+
+  ionViewWillEnter(){
+    this.getPhoto();
+  }
+
+  ngOnInit(){
+    this.getPhoto();
   }
 
   takePhoto(tipo){
-    
+    this.photo = '';
+
     const options: CameraOptions = {
       quality: 70,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -43,22 +51,18 @@ export class AlterarFotoPage {
     }
     
     this.camera.getPicture(options).then((imageData) => {
-     // imageData is either a base64 encoded string or a file URI
-     // If it's base64 (DATA_URL):
-     this.myphoto = 'data:image/jpeg;base64,' + imageData;
+     this.photo = 'data:image/jpeg;base64,' + imageData;
      this.photoStorage.savePhoto(this.id, this.photo);    
     }, (err) => {
-     // Handle error
     });
   }
 
-
-  ionViewWillEnter(){
-    this.photoStorage.getPhoto(this.id).then((result: any) => {
-      this.myphoto = result;
-    });
+  getPhoto(){
+  this.photoStorage.getPhoto(this.id).then((result: any) => {
+    this.photo = result;
+    console.log(this.photo)
+  });
   }
-
 
 }
 

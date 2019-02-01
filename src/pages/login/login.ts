@@ -33,8 +33,6 @@ export class LoginPage {
   public loader;
   
 
-   one: any;
-
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -54,7 +52,7 @@ export class LoginPage {
    
   retornaUser(){
       this.storage.getUser().then((result: any) => {
-        this.one = result;
+        this.user = result;
         console.log(result);
       });
   }
@@ -72,8 +70,8 @@ export class LoginPage {
     this.loginProvider.postLogin(username, password).then((result: any) => {
       console.log(result);
       this.closeLoading();
-      this.navCtrl.setRoot(UserPage.name, { 'user': result });
       this.storage.save(result);
+      this.navCtrl.setRoot(UserPage.name, {'user': result });
         if (this.checkedBox){
           this.storage.saveCheck(this.checkedBox);
         } else {

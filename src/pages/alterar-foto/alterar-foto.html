@@ -19,13 +19,13 @@
       
       <ion-content>
         
-        <img  src="{{ photo }}" />
+        <img *ngIf="photo != null"  src="{{ photo }}" />
       </ion-content>
       
       <ion-footer>
           <ion-title> 
-                <ion-icon id="icon1" name="camera" (click)="takePicture('foto')"></ion-icon>
-              <ion-icon id="icon2" name="images" (click)="takePicture('galery')"></ion-icon> 
+                <ion-icon id="icon1" name="camera" (click)="takePhoto('foto')"></ion-icon>
+              <ion-icon id="icon2" name="images" (click)="takePhoto('galery')"></ion-icon> 
           </ion-title>
       </ion-footer>
 

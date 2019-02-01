@@ -30,11 +30,11 @@ export class StorageUserProvider {
   }
 
   public savePhoto(id, photo){
-    return this.storage.set(id, photo);
+    return this.storage.set(String(id), photo);
   }
 
   public getPhoto(id){ 
-    return this.storage.get(id);
+    return this.storage.get(String(id));
   }
 
   saveCheck(dadocheck){
